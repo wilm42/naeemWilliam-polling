@@ -24,6 +24,8 @@ mongoose.Promise = global.Promise;
 // API endpoints go here!
 
 app.get("/api/polls", (req, res) => {
+
+    console.log('i work')
     Poll
         .find().then(polls => {
             res.json(polls.map(poll => {
@@ -50,7 +52,7 @@ console.log("i work")
 
            }) 
           
-        .then(drivers => res.status(201).json(drivers.apiRepr()))
+        .then(polls => res.status(201).json(polls.apiRepr()))
     .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
@@ -68,7 +70,7 @@ app.put('/api/polls/:id', (req, res) => {
   }
 
   const updated = {};
-  const updateableFields = ['text', 'choice', 'vote', ''];
+  const updateableFields = ['text', 'choices', 'vote', 'choice'];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
@@ -106,6 +108,7 @@ let server;
 // }
 function runServer(databaseUrl=DATABASE_URL, port=3001) {
   return new Promise((resolve, reject) => {
+      console.log(databaseUrl)
     mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
