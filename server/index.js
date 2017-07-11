@@ -38,6 +38,19 @@ app.get("/api/polls", (req, res) => {
         })
 })
 
+
+app.get('/api/polls/:id', (req, res) => {
+  Poll
+    .findById(req.params.id)
+    .exec()
+    .then(poll => res.json(poll.apiRepr()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
+});
+
+
 app.post('/api/polls', (req, res) => {
  
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
