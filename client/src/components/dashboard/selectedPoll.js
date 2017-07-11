@@ -18,11 +18,11 @@ export class SelectedPoll extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  title: state.title,
-  question: state.question,
-  createdDate: state.createdDate,
-  totalVotes: state.totalVotes,
-  answers: state.answers
+  title: state.myPolls[0].title,
+  question: state.myPolls[0].question,
+  createdDate: state.myPolls[0].createdDate,
+  totalVotes: state.myPolls[0].totalVotes,
+  answers: state.myPolls[0].answers
 });
 
 export default connect(mapStateToProps)(SelectedPoll);
