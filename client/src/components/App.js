@@ -7,7 +7,7 @@ class App extends Component {
    return (
      <div>
       <Dashboard />
-      {/*<Recipient />*/}
+      <Recipient />
      </div>
    );
   }

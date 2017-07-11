@@ -33,8 +33,8 @@ app.get("/api/polls", (req, res) => {
         .catch(err => {
             console.error(err);
             // res.status(500).json({error: 'our apologies, something went wrong'})
-        })
-})
+        });
+});
 
 app.post('/api/polls', (req, res) => {
     console.log(req.body)

@@ -3,14 +3,15 @@ import {connect} from 'react-redux';
 
 export class SelectedPoll extends React.Component {
   render(){
-    const results = this.props.answers.map((answer, index)=>{
-      return <li key={index}> {answer.text} | {answer.count / this.props.totalVotes * 100}% </li>
+    console.log(this.props.myPolls[1]);
+    const results = this.props.myPolls[1].choices.map((option, index)=>{
+      return <li key={index}> {option.choice} |  {option.vote} votes | {option.vote / 100 * 100}% </li>
     });
     return (
       <div>
-        <h2> {this.props.title} </h2>
-        <h3> {this.props.question} </h3>
-        <span>poll created: {this.props.createdDate} | total votes: {this.props.totalVotes}</span>
+        <h2> {this.props.myPolls[1].title} </h2>
+        <h3> {this.props.myPolls[1].question} </h3>
+        <span>poll created: TBD | total votes: TBD</span>
         <ul>{results}</ul>
       </div>
     );
@@ -18,11 +19,7 @@ export class SelectedPoll extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  title: state.myPolls[0].title,
-  question: state.myPolls[0].question,
-  createdDate: state.myPolls[0].createdDate,
-  totalVotes: state.myPolls[0].totalVotes,
-  answers: state.myPolls[0].answers
+  myPolls: state.myPolls
 });
 
 export default connect(mapStateToProps)(SelectedPoll);

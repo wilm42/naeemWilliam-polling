@@ -8,13 +8,13 @@ export class Recipient extends React.Component {
   };
   
   render(){
-    const choices = this.props.answers.map((answer, index)=>{
-      return <div> <input key={index} type="radio" name="pollChoice" value={index} onClick={e => this.makeSelection(e.target.value)} /> {answer.text} </div>
+    const choices = this.props.myPolls[1].choices.map((choice, index)=>{
+      return <div> <input key={index} type="radio" name="pollChoice" value={index} onClick={e => this.makeSelection(e.target.value)} /> {choice.choice} </div>
     });
     return (
       <div>
-        <h2> {this.props.title} </h2>
-        <h3> {this.props.question} </h3>
+        <h2> {this.props.myPolls[1].title} </h2>
+        <h3> {this.props.myPolls[1].question} </h3>
         <form>{choices}</form>
       </div>
     );
@@ -22,11 +22,7 @@ export class Recipient extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  title: state.title,
-  question: state.question,
-  createdDate: state.createdDate,
-  totalVotes: state.totalVotes,
-  answers: state.answers,
+  myPolls: state.myPolls,
   hasSelected: state.recipientHasSelected,
   selectedChoice: state.recipientChoice
 });

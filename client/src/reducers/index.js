@@ -5,7 +5,7 @@ const initialState = {
     {
       title: 'Vacation',
       question: 'Where should I go on vacation this year?',
-      answers: [
+      choices: [
         {
           text: 'The Bahamas',
           count: 8
@@ -29,7 +29,7 @@ const initialState = {
     {
       title: 'Braves',
       question: 'Where should I go on vacation this year?',
-      answers: [
+      choices: [
         {
           text: 'The Bahamas',
           count: 8
@@ -56,6 +56,7 @@ const initialState = {
 };
 
 export const reducer = (state=initialState, action)=>{
+  console.log(action);
   switch(action.type){
     case actions.RECIPIENT_MAKE_SELECTION:
       let updatedAnswers = state.answers;
@@ -65,6 +66,22 @@ export const reducer = (state=initialState, action)=>{
         recipientHasSelected: true,
         recipientChoice: action.selectionIndex,
         answers: updatedAnswers
+      });
+    case actions.REQUEST_GET_POLLS:
+      return Object.assign({}, state, {
+        loading: true,
+        error:null
+      });
+    case actions.SUCCESS_GET_POLLS:
+      return Object.assign({}, state, {
+        loading:false,
+        error:null,
+        myPolls: action.response
+      });
+    case actions.ERROR_GET_POLLS:
+      return Object.assign({}, state, {
+        loading:false,
+        error: action.error
       });
     default:
       return state
