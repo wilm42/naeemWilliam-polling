@@ -42,7 +42,7 @@ app.post('/api/polls', (req, res) => {
  
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
-    // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
+    req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
     Poll
         .create({
                 text: req.body.text,
