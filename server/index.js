@@ -39,11 +39,10 @@ app.get("/api/polls", (req, res) => {
 })
 
 app.post('/api/polls', (req, res) => {
-    console.log(req.body)
+ 
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
     // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
-console.log("i work")
     Poll
         .create({
                 text: req.body.text,
@@ -62,7 +61,7 @@ console.log("i work")
 
 
 app.put('/api/polls/:id', (req, res) => {
-
+    console.log(req.body)
   if (!(req.params.id && req.body.id === req.body.id )) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -76,6 +75,14 @@ app.put('/api/polls/:id', (req, res) => {
       updated[field] = req.body[field];
     }
   });
+
+    Poll
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .exec()
+    .then(updatePoll => res.status(201).json(updatePoll.apiRepr()))
+    .catch(err => res.status(500).json({message: 'Something went wrong'}));
+
+
 
 })
 
