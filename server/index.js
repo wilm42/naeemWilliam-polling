@@ -26,7 +26,6 @@ mongoose.Promise = global.Promise;
 app.get("/api/polls", (req, res) => {
     Poll
         .find().then(polls => {
-          console.log('bang')  
             res.json(polls.map(poll => {
                 return poll.apiRepr()
             }));
@@ -38,27 +37,55 @@ app.get("/api/polls", (req, res) => {
 })
 
 app.post('/api/polls', (req, res) => {
-    
-    req.check('choice-one', 'invalid choice').isLength({min: 1});
-    req.check('choice-two', 'invalid choice').isLength({min: 1});
-    req.check('poll-question', 'invalid question').isLength({min: 5});
-    req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
-
+    console.log(req.body)
+     // req.check('choice-two', 'invalid choice').isLength({min: 1});
+    // req.check('poll-question', 'invalid question').isLength({min: 5});
+    // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
+console.log("i work")
     Poll
         .create({
-           poll: {
-               text: req.body.text,
-               title: req.body.text,
-               choices: [{
-                   choice: req.body.choice,
-                   vote: req.body.vote
-               }]
+                text: req.body.text,
+               title: req.body.title,
+               choices: req.body.choices
 
-           } 
-        })
+           }) 
+          
+        .then(drivers => res.status(201).json(drivers.apiRepr()))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'Something went wrong'});
+    });
 
+});
+
+
+app.put('/api/polls/:id', (req, res) => {
+
+  if (!(req.params.id && req.body.id === req.body.id )) {
+    res.status(400).json({
+      error: 'Request path id and request body id values must match'
+    });
+  }
+
+  const updated = {};
+  const updateableFields = ['phone', 'load', 'companyName'];
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      updated[field] = req.body[field];
+    }
+  });
 
 })
+app.delete('/api/polls/:id', (req, res) => {
+  Poll
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(() => {
+      console.log(`Deleted driver with id \`${req.params.ID}\``);
+      res.status(204).end();
+    });
+});
+
 // Serve the built client
 
 // Unhandled requests which aren't for the API should serve index.html so
