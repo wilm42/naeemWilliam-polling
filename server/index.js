@@ -68,7 +68,7 @@ app.put('/api/polls/:id', (req, res) => {
   }
 
   const updated = {};
-  const updateableFields = ['phone', 'load', 'companyName'];
+  const updateableFields = ['text', 'choice', 'vote', ''];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
@@ -76,6 +76,7 @@ app.put('/api/polls/:id', (req, res) => {
   });
 
 })
+
 app.delete('/api/polls/:id', (req, res) => {
   Poll
     .findByIdAndRemove(req.params.id)
