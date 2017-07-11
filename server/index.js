@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const expressValidator = require('express-validator');
 const {Poll} = require('./models')
-const {DATABASE_URL} = require ('./config');
+const {DATABASE_URL, PORT} = require ('./config');
 
 
 const app = express();
@@ -24,7 +24,8 @@ mongoose.Promise = global.Promise;
 // API endpoints go here!
 
 app.get("/api/polls", (req, res) => {
-  
+    res.json()
+  console.log('hit it')
     Poll
         .find().then(polls => {
           console.log('bang')  
@@ -70,14 +71,30 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(port=3001) {
-    return new Promise((resolve, reject) => {
-        server = app.listen(port, () => {
-            resolve();
-        }).on('error', reject);
+// function runServer(port=3001) {
+//     return new Promise((resolve, reject) => {
+//         server = app.listen(port, () => {
+//             resolve();
+//         }).on('error', reject);
+//     });
+// }
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
     });
+  });
 }
-
 function closeServer() {
     return new Promise((resolve, reject) => {
         server.close(err => {
