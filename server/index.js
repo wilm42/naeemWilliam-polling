@@ -24,6 +24,8 @@ mongoose.Promise = global.Promise;
 // API endpoints go here!
 
 app.get("/api/polls", (req, res) => {
+
+    console.log('i work')
     Poll
         .find().then(polls => {
             res.json(polls.map(poll => {
@@ -37,11 +39,10 @@ app.get("/api/polls", (req, res) => {
 });
 
 app.post('/api/polls', (req, res) => {
-    console.log(req.body)
+ 
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
     // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
-console.log("i work")
     Poll
         .create({
                 text: req.body.text,
@@ -50,7 +51,7 @@ console.log("i work")
 
            }) 
           
-        .then(drivers => res.status(201).json(drivers.apiRepr()))
+        .then(polls => res.status(201).json(polls.apiRepr()))
     .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
@@ -60,7 +61,7 @@ console.log("i work")
 
 
 app.put('/api/polls/:id', (req, res) => {
-
+    console.log(req.body)
   if (!(req.params.id && req.body.id === req.body.id )) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -68,14 +69,23 @@ app.put('/api/polls/:id', (req, res) => {
   }
 
   const updated = {};
-  const updateableFields = ['phone', 'load', 'companyName'];
+  const updateableFields = ['text', 'choices', 'vote', 'choice'];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
     }
   });
 
+    Poll
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .exec()
+    .then(updatePoll => res.status(201).json(updatePoll.apiRepr()))
+    .catch(err => res.status(500).json({message: 'Something went wrong'}));
+
+
+
 })
+
 app.delete('/api/polls/:id', (req, res) => {
   Poll
     .findByIdAndRemove(req.params.id)
@@ -105,6 +115,7 @@ let server;
 // }
 function runServer(databaseUrl=DATABASE_URL, port=3001) {
   return new Promise((resolve, reject) => {
+      console.log(databaseUrl)
     mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
