@@ -1,0 +1,12 @@
+[{
+"text":"how old are you?",
+  "title":"age",
+  "choices":[{
+		"choice": "10",
+		"vote": "0"}, 
+	     {
+		"choice": "20",
+		"vote": 0}
+	    ]
+}
+]
