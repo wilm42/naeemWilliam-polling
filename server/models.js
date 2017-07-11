@@ -8,24 +8,25 @@ const answerChoiceSchema = mongoose.Schema({
 })
 
 const questionSchema = mongoose.Schema({
-    text: {type: String, required: true},
-    title: {type: String, required: true},
-    choices:[answerChoiceSchema],
+    text: {type: Array, required: true},
 })
 
 const pollSchema = mongoose.Schema({
-    poll: [questionSchema],
-    // aut hor: {type: String, required: true}
+    text: {type: String, ref: 'Question'},
+    title: {type: String, required: true},
+    choices: {type: Array, ref: 'Answers'}
 })
 
 pollSchema.methods.apiRepr = function() {
     return{
         id: this._id,
-        question: this.questions,
-
+        title: this.title,
+        text:this.text,
+        choices:this.choices,
     }
 }
 
 const Poll = mongoose.model('Poll', pollSchema);
-
+const Question = mongoose.model('Question', questionSchema);
+const Answers = mongoose.model('Answers', answerChoiceSchema);
 module.exports = {Poll}

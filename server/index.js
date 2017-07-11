@@ -24,18 +24,16 @@ mongoose.Promise = global.Promise;
 // API endpoints go here!
 
 app.get("/api/polls", (req, res) => {
-    res.json()
-  console.log('hit it')
     Poll
         .find().then(polls => {
           console.log('bang')  
             res.json(polls.map(poll => {
-                return poll.apiReper()
+                return poll.apiRepr()
             }));
         })
         .catch(err => {
             console.error(err);
-            res.status(500).json({error: 'our apologies, something went wrong'})
+            // res.status(500).json({error: 'our apologies, something went wrong'})
         })
 })
 
@@ -78,7 +76,7 @@ let server;
 //         }).on('error', reject);
 //     });
 // }
-function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+function runServer(databaseUrl=DATABASE_URL, port=3001) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
       if (err) {
