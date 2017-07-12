@@ -51,6 +51,7 @@ app.get('/api/polls/:id', (req, res) => {
 
 
 app.post('/api/polls', (req, res) => {
+    console.log(req.body);
     const requiredFields = ['text', 'title', 'choices'];
    
     for (let i=0; i<requiredFields.length; i++) {
@@ -77,8 +78,7 @@ app.post('/api/polls', (req, res) => {
         .create({
                 text: req.body.text,
                title: req.body.title,
-               choices: req.body.choices,
-               createdDate: req.body.createdDate
+               choices: req.body.choices
 
            }) 
           
