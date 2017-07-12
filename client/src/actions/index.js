@@ -91,7 +91,6 @@ export const createPoll = (obj) => dispatch => {
     },
     body: JSON.stringify(obj)
   });
-  
 };
 
 export const REQUEST_POLL_RECIPIENT = 'REQUEST_POLL_RECIPIENT';

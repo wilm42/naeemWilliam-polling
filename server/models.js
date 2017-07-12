@@ -15,7 +15,7 @@ const pollSchema = mongoose.Schema({
     text: {type: String, ref: 'Question'},
     title: {type: String, required: true},
     choices: {type: Array, ref: 'Answers'},
-    date: {type: Date, default: Date.now}
+    createdDate: {type: String}
 })
 
 pollSchema.methods.apiRepr = function() {
@@ -24,7 +24,7 @@ pollSchema.methods.apiRepr = function() {
         title:this.title,
         text:this.text,
         choices:this.choices,
-        date:this.date
+        createdDate:this.createdDate
     }
 }
 

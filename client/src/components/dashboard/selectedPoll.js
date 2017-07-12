@@ -13,6 +13,7 @@ export class SelectedPoll extends React.Component {
   }
 
   render(){
+    console.log(this.props.myPolls);
     const selectedPoll = this.props.myPolls[this.props.selectedPoll];
     const totalVotes = this.countVotes(selectedPoll.choices);
     const results = selectedPoll.choices.map((option, index)=>{
