@@ -34,8 +34,8 @@ app.get("/api/polls", (req, res) => {
         .catch(err => {
             console.error(err);
             // res.status(500).json({error: 'our apologies, something went wrong'})
-        })
-})
+        });
+});
 
 
 app.get('/api/polls/:id', (req, res) => {
@@ -62,14 +62,14 @@ app.post('/api/polls', (req, res) => {
         }
     }
     const moreRequiredFields =['choice', 'vote']
-    for (let i=0; i<moreRequiredFields.length; i++){
-        const otherField = moreRequiredFields[i];
-        if (!(otherField in req.body.choices)){
-            const errorMessage = `Missing \`${otherField}\` in request body`;
-            console.error(errorMessage);
-        return res.status(400).send(errorMessage);  
-        }
-    }
+    // for (let i=0; i<moreRequiredFields.length; i++){
+    //     const otherField = moreRequiredFields[i];
+    //     if (!(otherField in req.body.choices)){
+    //         const errorMessage = `Missing \`${otherField}\` in request body`;
+    //         console.error(errorMessage);
+    //     return res.status(400).send(errorMessage);  
+    //     }
+    // }
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
     // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
@@ -77,7 +77,8 @@ app.post('/api/polls', (req, res) => {
         .create({
                 text: req.body.text,
                title: req.body.title,
-               choices: req.body.choices
+               choices: req.body.choices,
+               createdDate: req.body.createdDate
 
            }) 
           
