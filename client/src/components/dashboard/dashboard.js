@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
   render(){
     return(
       <div>
-        {/*<MyPolls />*/}
+        <MyPolls />
         <SelectedPoll />
       </div>
     );

@@ -52,21 +52,14 @@ const initialState = {
     }
   ],
   recipientHasSelected: false,
-  recipientChoice: null
+  recipientChoice: null,
+  selectedPoll: 0
 };
 
 export const reducer = (state=initialState, action)=>{
   console.log(action);
   switch(action.type){
-    case actions.RECIPIENT_MAKE_SELECTION:
-      let updatedAnswers = state.answers;
-      updatedAnswers[action.selectionIndex].count = updatedAnswers[action.selectionIndex].count + 1
-      return Object.assign({}, state, {
-        totalVotes: state.totalVotes + 1,
-        recipientHasSelected: true,
-        recipientChoice: action.selectionIndex,
-        answers: updatedAnswers
-      });
+    
     case actions.REQUEST_GET_POLLS:
       return Object.assign({}, state, {
         loading: true,
@@ -82,6 +75,10 @@ export const reducer = (state=initialState, action)=>{
       return Object.assign({}, state, {
         loading:false,
         error: action.error
+      });
+    case actions.SELECT_POLL:
+      return Object.assign({}, state, {
+        selectedPoll: action.index
       });
     default:
       return state
