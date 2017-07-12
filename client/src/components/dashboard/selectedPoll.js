@@ -24,6 +24,7 @@ export class SelectedPoll extends React.Component {
         <h3> {selectedPoll.text} </h3>
         <span>poll created: {selectedPoll.createdDate || 'TBD'} | total votes: {totalVotes}</span>
         <ul>{results}</ul>
+        <span> link to your poll: http://localhost:8080/recipient/{selectedPoll.id} </span>
       </div>
     );
   }

@@ -62,14 +62,15 @@ export class CreateEdit extends React.Component{
     let mm = months[today.getMonth()];
     let yyyy = today.getFullYear();
     today = `${mm} ${dd}, ${yyyy}`;
-    let postJson = JSON.stringify({...this.state, createdDate: today});
-    console.log(postJson);
+    let postObj = {...this.state, createdDate: today};
+    console.log(postObj);
+    this.props.dispatch(actions.createPoll(postObj));
   };
 
   render(){
     return(
       <div>
-        <label htmlFor="createEdit"><h2> Create / Edit Poll </h2></label>
+        <label htmlFor="createEdit"><h2> Create Poll </h2></label>
         <form id="createEdit">
           <label htmlFor="title"><h3>Title</h3></label>
           <input type="text" id="title" placeholder="Enter Poll Title Here..." value={this.state.title} onChange={e=> this.handleOnChange({title: e.target.value})}/>
