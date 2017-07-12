@@ -25,7 +25,6 @@ mongoose.Promise = global.Promise;
 
 app.get("/api/polls", (req, res) => {
 
-    console.log('i work')
     Poll
         .find().then(polls => {
             res.json(polls.map(poll => {
@@ -52,10 +51,28 @@ app.get('/api/polls/:id', (req, res) => {
 
 
 app.post('/api/polls', (req, res) => {
- 
+    const requiredFields = ['text', 'title', 'choices'];
+   
+    for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing \`${field}\` in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    const moreRequiredFields =['choice', 'vote']
+    for (let i=0; i<moreRequiredFields.length; i++){
+        const otherField = moreRequiredFields[i];
+        if (!(otherField in req.body.choices)){
+            const errorMessage = `Missing \`${otherField}\` in request body`;
+            console.error(errorMessage);
+        return res.status(400).send(errorMessage);  
+        }
+    }
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
-    req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
+    // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
     Poll
         .create({
                 text: req.body.text,
@@ -65,7 +82,7 @@ app.post('/api/polls', (req, res) => {
            }) 
           
         .then(polls => res.status(201).json(polls.apiRepr()))
-    .catch(err => {
+        .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
     });
@@ -109,23 +126,13 @@ app.delete('/api/polls/:id', (req, res) => {
     });
 });
 
-// Serve the built client
 
-// Unhandled requests which aren't for the API should serve index.html so
-// client-side routing using browserHistory can function
 app.get(/^(?!\/api(\/|$))/, (req, res) => {
     const index = path.resolve(__dirname, '../client/public', 'index.html');
     res.sendFile(index);
 });
 
 let server;
-// function runServer(port=3001) {
-//     return new Promise((resolve, reject) => {
-//         server = app.listen(port, () => {
-//             resolve();
-//         }).on('error', reject);
-//     });
-// }
 function runServer(databaseUrl=DATABASE_URL, port=3001) {
   return new Promise((resolve, reject) => {
       console.log(databaseUrl)

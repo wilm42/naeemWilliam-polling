@@ -1,3 +1,5 @@
+'use strict'
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const chaiMoment = require('chai-moment');
@@ -49,7 +51,7 @@ describe('Posts', function(){
   });
     
   beforeEach(function() {
-    return (seedDriver(), seedBrokerShipper());
+    return (seedPoll());
   });
     
   afterEach(function() {
@@ -63,9 +65,49 @@ describe('Posts', function(){
 
         describe('Poll Test', function() {
             describe('GET', function(){
-                it ('should get the all polls', function(){
-                    
+                it('should get the all polls', function(){
+                   return chai.request(app) 
+                    .get('/api/polls')
+                    .then(function(res){
+                      res.should.have.status(200);
+                      res.should.be.json;
+                      res.body.should.be.a('array');
+                      const expectedKeys = ['title', 'id','text', 'choices'];
+                      res.body.forEach(function(item) {
+                        item.should.include.keys(expectedKeys);
+                      })
+                      const choicesKeys = ['choice', 'vote'];
+                      console.log('look at me =====>', res.body)
+                      res.body[7].choices.forEach(function (item) {
+                        item.should.include.keys(choicesKeys)
+                      })
+                    })
                 })
             })
+        })
+
+
+        describe('GET by ID', function(){
+          it.only('should get the Polls information by id', function(){
+            let testPoll = {};
+
+            return chai.request(app)
+              .get('/api/polls')
+              .then(function(res) {
+                
+                testPoll = res.body[0];
+                return chai.request(app)
+                  .get(`api/polls/${testPoll.id}`);
+              })
+              .then(function(res) {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('array')
+                res.body.id.should.equal(testPoll.id);
+                res.body.title.should.equal(testPoll.title);
+                res.body.text.should.equal(testPoll.text);
+                res.body.choices.should.equal(testPoll.choices);
+              })
+          })
         })
 })
