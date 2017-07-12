@@ -19,7 +19,7 @@ chai.use(chaiMoment);
 
 function generatePoll() {
   return {
-
+    date: faker.date.recent(),
     text: faker.lorem.sentence(),
     title: faker.lorem.sentence(3),
     choices: [{
@@ -74,7 +74,7 @@ describe('Posts', function(){
                       res.should.have.status(200);
                       res.should.be.json;
                       res.body.should.be.a('array');
-                      const expectedKeys = ['title', 'id','text', 'choices'];
+                      const expectedKeys = ['title', 'id','text', 'choices', 'date'];
                       res.body.forEach(function(item) {
                         item.should.include.keys(expectedKeys);
                       })
@@ -104,7 +104,8 @@ describe('Posts', function(){
                 
                 res.should.have.status(200);
                 res.should.be.json;
-                res.body.should.be.a('object')
+                res.body.should.be.a('object');
+                res.body.date.should.equal(testPoll.date);
                 res.body.id.should.equal(testPoll.id);
                 res.body.title.should.equal(testPoll.title);
                 res.body.text.should.equal(testPoll.text);
@@ -134,6 +135,7 @@ describe('Posts', function(){
                 res.body.should.be.a('object');
                 res.body.id.should.equal(updatePoll.id);
                 res.body.text.should.equal(updatePoll.text);
+                res.body.title.should.equal(updatePoll.title);
                 res.body.choices.should.be.a('array');
                 res.body.choices[0].vote.should.equal(updatePoll.choices[0].vote);
                 res.body.choices[0].choice.should.equal(updatePoll.choices[0].choice);
