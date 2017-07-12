@@ -3,10 +3,12 @@
 require('dotenv').config();
 
 exports.DATABASE_URL = process.env.DATABASE_URL ||
-                       global.DATABASE_URL
+                       global.DATABASE_URL 
+                       
                      
-
+exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL ||
+                            global.TEST_DATABASE_URL || 
+                            'mongodb://localhost/polls';
 
 exports.PORT = process.env.PORT ||8080;
 
-//DATABASE_URL = 'mongodb://dev:dev@ds153732.mlab.com:53732/poll-app'

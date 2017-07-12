@@ -24,6 +24,7 @@ mongoose.Promise = global.Promise;
 // API endpoints go here!
 
 app.get("/api/polls", (req, res) => {
+
     Poll
         .find().then(polls => {
             res.json(polls.map(poll => {
@@ -36,12 +37,42 @@ app.get("/api/polls", (req, res) => {
         })
 })
 
+
+app.get('/api/polls/:id', (req, res) => {
+  Poll
+    .findById(req.params.id)
+    .exec()
+    .then(poll => res.json(poll.apiRepr()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
+});
+
+
 app.post('/api/polls', (req, res) => {
-    console.log(req.body)
+    const requiredFields = ['text', 'title', 'choices'];
+   
+    for (let i=0; i<requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing \`${field}\` in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    const moreRequiredFields =['choice', 'vote']
+    for (let i=0; i<moreRequiredFields.length; i++){
+        const otherField = moreRequiredFields[i];
+        if (!(otherField in req.body.choices)){
+            const errorMessage = `Missing \`${otherField}\` in request body`;
+            console.error(errorMessage);
+        return res.status(400).send(errorMessage);  
+        }
+    }
      // req.check('choice-two', 'invalid choice').isLength({min: 1});
     // req.check('poll-question', 'invalid question').isLength({min: 5});
     // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
-console.log("i work")
     Poll
         .create({
                 text: req.body.text,
@@ -50,8 +81,8 @@ console.log("i work")
 
            }) 
           
-        .then(drivers => res.status(201).json(drivers.apiRepr()))
-    .catch(err => {
+        .then(polls => res.status(201).json(polls.apiRepr()))
+        .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});
     });
@@ -60,7 +91,6 @@ console.log("i work")
 
 
 app.put('/api/polls/:id', (req, res) => {
-
   if (!(req.params.id && req.body.id === req.body.id )) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -68,14 +98,23 @@ app.put('/api/polls/:id', (req, res) => {
   }
 
   const updated = {};
-  const updateableFields = ['phone', 'load', 'companyName'];
+  const updateableFields = ['text', 'choices', 'vote', 'choice'];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
     }
   });
 
+    Poll
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .exec()
+    .then(updatePoll => res.status(201).json(updatePoll.apiRepr()))
+    .catch(err => res.status(500).json({message: 'Something went wrong'}));
+
+
+
 })
+
 app.delete('/api/polls/:id', (req, res) => {
   Poll
     .findByIdAndRemove(req.params.id)
@@ -86,25 +125,16 @@ app.delete('/api/polls/:id', (req, res) => {
     });
 });
 
-// Serve the built client
 
-// Unhandled requests which aren't for the API should serve index.html so
-// client-side routing using browserHistory can function
 app.get(/^(?!\/api(\/|$))/, (req, res) => {
     const index = path.resolve(__dirname, '../client/public', 'index.html');
     res.sendFile(index);
 });
 
 let server;
-// function runServer(port=3001) {
-//     return new Promise((resolve, reject) => {
-//         server = app.listen(port, () => {
-//             resolve();
-//         }).on('error', reject);
-//     });
-// }
 function runServer(databaseUrl=DATABASE_URL, port=3001) {
   return new Promise((resolve, reject) => {
+      console.log(databaseUrl)
     mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
