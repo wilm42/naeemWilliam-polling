@@ -14,15 +14,17 @@ const questionSchema = mongoose.Schema({
 const pollSchema = mongoose.Schema({
     text: {type: String, ref: 'Question'},
     title: {type: String, required: true},
-    choices: {type: Array, ref: 'Answers'}
+    choices: {type: Array, ref: 'Answers'},
+    date: {type: Date, default: Date.now}
 })
 
 pollSchema.methods.apiRepr = function() {
     return{
-        id: this._id,
-        title: this.title,
+        id:this._id,
+        title:this.title,
         text:this.text,
         choices:this.choices,
+        date:this.date
     }
 }
 
