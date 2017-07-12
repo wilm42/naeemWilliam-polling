@@ -91,7 +91,6 @@ app.post('/api/polls', (req, res) => {
 
 
 app.put('/api/polls/:id', (req, res) => {
-    console.log(req.body)
   if (!(req.params.id && req.body.id === req.body.id )) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'

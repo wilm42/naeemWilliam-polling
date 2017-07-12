@@ -1,6 +1,6 @@
 {
   "name": "thinkful-full-stack-template-server",
-  "version": "0.12.0",
+  "version": "0.14.0",
   "description": "Server portion of a full-stack starter template",
   "main": "index.js",
   "scripts": {
