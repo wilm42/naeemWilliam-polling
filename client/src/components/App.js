@@ -10,7 +10,7 @@ class App extends Component {
      <Router>
       <div>
         <Route exact path="/" component={Dashboard} />
-        <Route exact path="/recipient" component={Recipient} />
+        <Route exact path="/recipient/:pollId" component={Recipient} />
         <Route exact path="/create" component={CreateEdit} />
       </div>
      </Router>

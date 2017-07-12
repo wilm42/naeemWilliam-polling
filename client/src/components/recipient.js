@@ -5,32 +5,32 @@ import * as actions from '../actions';
 export class Recipient extends React.Component {
 
   componentDidMount(){
-    console.log('getting the polls')
-    this.props.dispatch(actions.getPolls());
+    this.props.dispatch(actions.getPollRecipient(this.props.match.params.pollId));
   }
 
   makeSelection(v){
-    this.props.dispatch(actions.recipientMakeSelection(this.props.myPolls[1].id, this.props.myPolls[1].choices, v));
+    this.props.dispatch(actions.recipientMakeSelection(this.props.poll.id, this.props.poll.choices, v));
   };
   
   render(){
-    const choices = this.props.myPolls[1].choices.map((choice, index)=>{
+    const choices = this.props.poll.choices.map((choice, index)=>{
       return <div> <input key={index} type="radio" name="pollChoice" value={index} onClick={e => this.makeSelection(e.target.value)} /> {choice.choice} </div>
     });
     return (
       <div>
-        <h2> {this.props.myPolls[1].title} </h2>
-        <h3> {this.props.myPolls[1].text} </h3>
+        <h2> {this.props.poll.title} </h2>
+        <h3> {this.props.poll.text} </h3>
         <form>{choices}</form>
       </div>
     );
   };
 };
 
-const mapStateToProps = state => ({
-  myPolls: state.myPolls,
+const mapStateToProps = (state, props) => ({
+  poll: state.recipient,
   hasSelected: state.recipientHasSelected,
-  selectedChoice: state.recipientChoice
+  selectedChoice: state.recipientChoice,
+  id: props.match.params.pollId,
 });
 
 export default connect(mapStateToProps)(Recipient);

@@ -91,3 +91,29 @@ export const createPoll = (json) => dispatch => {
     body: json
   });
 }
+
+export const REQUEST_POLL_RECIPIENT = 'REQUEST_POLL_RECIPIENT';
+export const requestPollRecipient = () => ({
+  type: REQUEST_POLL_RECIPIENT
+});
+
+export const SUCCESS_POLL_RECIPIENT = 'SUCCESS_POLL_RECIPIENT';
+export const successPollRecipient = (response) => ({
+  type: SUCCESS_POLL_RECIPIENT,
+  response
+});
+
+export const ERROR_POLL_RECIPIENT = 'ERROR_POLL_RECIPIENT';
+export const errorPollRecipient = (error) => ({
+  type: ERROR_POLL_RECIPIENT,
+  error
+});
+
+export const getPollRecipient = id => dispatch => {
+  console.log(id);
+  dispatch(requestPollRecipient());
+  return fetch(`/api/polls/${id}`)
+    .then(res => res.json())
+    .then(json => dispatch(successPollRecipient(json)))
+    .catch(error => dispatch(errorPollRecipient(error)));
+};

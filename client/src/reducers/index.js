@@ -53,7 +53,10 @@ const initialState = {
   ],
   recipientHasSelected: false,
   recipientChoice: null,
-  selectedPoll: 0
+  selectedPoll: 0,
+  recipient: {
+    choices:[]
+  }
 };
 
 export const reducer = (state=initialState, action)=>{
@@ -79,6 +82,21 @@ export const reducer = (state=initialState, action)=>{
     case actions.SELECT_POLL:
       return Object.assign({}, state, {
         selectedPoll: action.index
+      });
+    case actions.REQUEST_POLL_RECIPIENT:
+      return Object.assign({}, state, {
+        loading: true,
+        error:null
+      });
+    case actions.ERROR_POLL_RECIPIENT:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.error
+      });
+    case actions.SUCCESS_POLL_RECIPIENT:
+      console.log('setting response to state.recipient')
+      return Object.assign({}, state, {
+        recipient: action.response
       });
     default:
       return state
