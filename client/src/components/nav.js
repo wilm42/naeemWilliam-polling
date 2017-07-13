@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export class Nav extends React.Component{
   render(){

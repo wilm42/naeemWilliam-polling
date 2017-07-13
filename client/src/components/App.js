@@ -8,11 +8,10 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 export class App extends Component {
   render() {
-  let nav = <Link to={this.props.navState.link}> {this.props.navState.text} </Link>;
    return (
      <Router>
       <div className="app">
-          <header>{nav}</header>
+          <header><Nav /></header>
           <main>
             
               <Route exact path="/" component={Dashboard} />
