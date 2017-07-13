@@ -10,17 +10,10 @@ export class Dashboard extends React.Component {
 
 
   componentDidMount(){
-    this.props.dispatch(actions.getPolls())
-    this.interval =  setInterval(() =>{
-      console.log('I work')
-     this.props.dispatch(actions.getPolls())
-    }, 5000)
-    
-  }  
-
-
-  componentWillUnmount(){
-    this.interval = this.interval.destroy()
+    console.log('getting the polls')
+    this.props.dispatch(actions.getPolls());
+    this.props.dispatch(actions.navStateDashboard());
+    this.intervalId = setInterval(() => {this.props.dispatch(actions.getPolls())}, 5000)
   }
 
 
@@ -31,6 +24,10 @@ export class Dashboard extends React.Component {
         <SelectedPoll />
       </div>
     );
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
   }
 }
 
