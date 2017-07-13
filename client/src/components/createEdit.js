@@ -61,7 +61,7 @@ export class CreateEdit extends React.Component{
   compileAndPost(e){
     e.preventDefault();
     let obj = {...this.state};
-    this.props.dispatch(actions.createPoll(obj));
+    this.props.dispatch(actions.createPoll(obj, this.props.history));
   };
 
   render(){

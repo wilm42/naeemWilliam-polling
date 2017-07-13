@@ -99,21 +99,9 @@ export const errorCreatePoll = (error) => ({
 export const CAST_VOTE = 'CAST_VOTE';
 export const castVote = () => ({
   type: CAST_VOTE
-})
+});
 
-// export const createPoll = (json) => dispatch => {
-//   dispatch(requestCreatePoll());
-//   return fetch('/api/polls',{
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": 'applicaton/json'
-//     },
-//     body: JSON.string
-//   });
-// }
-
-export const createPoll = (obj) => dispatch => {
-  console.log(obj);
+export const createPoll = (obj, history) => dispatch => {
   dispatch(requestCreatePoll());
   return fetch('/api/polls',{
     method: 'POST',
@@ -121,6 +109,13 @@ export const createPoll = (obj) => dispatch => {
       "Content-Type": 'application/json'
     },
     body: JSON.stringify(obj)
+  })
+  .then(res => {
+    dispatch(successCreatePoll(res));
+    history.push('/');
+  })
+  .catch(error => {
+    dispatch(errorCreatePoll(error))
   });
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import SelectedPoll from './dashboard/selectedPoll';
+import {Link} from 'react-router-dom';
 
 export class Poll extends React.Component {
 
@@ -24,26 +25,20 @@ export class Poll extends React.Component {
       console.log("THIS IS CHOICE====>", choice)
       return <div> <input key={index} type="radio" name="pollChoice" value={index} /> {choice.choice} </div>
     });
-
-    if(this.props.castVote === false){
-         return (
+    let feedbackModal;
+    if(this.props.castVote){
+      feedbackModal = <div><h2>Thanks for your input!</h2><span><Link to="/create">Create your own poll</Link></span></div>
+    }
+    return (
       <div>
         <h2> {this.props.poll.title} </h2>
         <h3> {this.props.poll.text} </h3>
         <form>{choices}</form>
         <button onClick={e => {
-          console.log(value)
           return this.makeSelection(value)}}>Submit</button>
-        <h3></h3>  
+        {feedbackModal}
       </div>
     );
-    }return(
-      <div>
-      <h2>Thanks for voting!</h2>
-      <SelectedPoll />  
-      </div>
-    )
-   
   };
 };
 
