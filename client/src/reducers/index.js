@@ -54,7 +54,14 @@ const initialState = {
   recipientHasSelected: false,
   recipientChoice: null,
   selectedPoll: 0,
-  castVote: false
+  castVote: false,
+  recipient: {
+    choices:[]
+  },
+  navState: {
+    text: '+ New Poll',
+    link: '/create'
+  }
 };
 
 export const reducer = (state=initialState, action)=>{
@@ -100,6 +107,21 @@ export const reducer = (state=initialState, action)=>{
       return Object.assign({}, state, {
         recipient: action.response
       });
+    case actions.NAV_STATE_DASHBOARD:
+      return Object.assign({}, state, {navState: {
+        link: '/create',
+        text: '+ Create New Poll'
+      }});
+    case actions.NAV_STATE_CREATE:
+      return Object.assign({}, state, {navState: {
+        link: '/',
+        text: 'Dashboard'
+      }});
+    case actions.NAV_STATE_RECIPIENT:
+      return Object.assign({}, state, {navState: {
+        link: '/create',
+        text: '+ Create Your Own Poll'
+      }});
     default:
       return state
   }

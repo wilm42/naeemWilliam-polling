@@ -6,6 +6,7 @@ import SelectedPoll from './dashboard/selectedPoll';
 export class Poll extends React.Component {
 
   componentDidMount(){
+    this.props.dispatch(actions.navStateRecipient());
     this.props.dispatch(actions.getPollRecipient(this.props.match.params.pollId));
   }
 

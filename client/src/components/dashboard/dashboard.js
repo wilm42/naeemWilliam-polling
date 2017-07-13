@@ -9,6 +9,7 @@ export class Dashboard extends React.Component {
   componentDidMount(){
     console.log('getting the polls')
     this.props.dispatch(actions.getPolls());
+    this.props.dispatch(actions.navStateDashboard());
   }
 
   render(){

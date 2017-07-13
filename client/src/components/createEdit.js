@@ -38,6 +38,10 @@ export class CreateEdit extends React.Component{
     }
   }
 
+  componentDidMount(){
+    this.props.dispatch(actions.navStateCreate());
+  }
+
   handleOnChange(set){
     this.setState(set);
   };

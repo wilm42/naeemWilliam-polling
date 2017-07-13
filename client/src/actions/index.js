@@ -137,3 +137,18 @@ export const getPollRecipient = id => dispatch => {
     .then(json => dispatch(successPollRecipient(json)))
     .catch(error => dispatch(errorPollRecipient(error)));
 };
+
+export const NAV_STATE_DASHBOARD = 'NAV_STATE_DASHBOARD';
+export const navStateDashboard = () => ({
+  type: NAV_STATE_DASHBOARD
+});
+
+export const NAV_STATE_CREATE = 'NAV_STATE_CREATE';
+export const navStateCreate = () => ({
+  type: NAV_STATE_CREATE
+});
+
+export const NAV_STATE_RECIPIENT = 'NAV_STATE_RECIPIENT';
+export const navStateRecipient = () => ({
+  type: NAV_STATE_RECIPIENT
+});
