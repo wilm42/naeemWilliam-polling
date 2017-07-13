@@ -11,6 +11,7 @@ export class Recipient extends React.Component {
 
   makeSelection(value){
     event.preventDefault();
+    this.props.dispatch(actions.castVote());
     this.props.dispatch(actions.recipientMakeSelection(this.props.myPolls[1].id, this.props.myPolls[1].choices, value));
   };
   
@@ -22,7 +23,9 @@ export class Recipient extends React.Component {
       value = index;
       return <div> <input key={index} type="radio" name="pollChoice" value={index} /> {choice.choice} </div>
     });
-    return (
+
+    if(this.props.castVote === false){
+         return (
       <div>
         <h2> {this.props.myPolls[1].title} </h2>
         <h3> {this.props.myPolls[1].text} </h3>
@@ -30,8 +33,13 @@ export class Recipient extends React.Component {
         <button onClick={e => {
           console.log(value)
           return this.makeSelection(value)}}>Submit</button>
+        <h3></h3>  
       </div>
     );
+    }return(
+      <h2>Thanks for voting!</h2>
+    )
+   
   };
 };
 
@@ -39,6 +47,7 @@ const mapStateToProps = state => ({
   myPolls: state.myPolls,
   hasSelected: state.recipientHasSelected,
   selectedChoice: state.recipientChoice,
+  castVote: state.castVote
 
 });
 

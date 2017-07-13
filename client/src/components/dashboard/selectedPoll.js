@@ -5,7 +5,7 @@ const moment = require('moment')
 export class SelectedPoll extends React.Component {
 
   countVotes(choices){
-    console.log('THIS IS CHOICES ====>',choices);
+    //console.log('THIS IS CHOICES ====>',choices);
     let total = 0;
     choices.forEach(choice=> {
       total += choice.vote

@@ -81,6 +81,11 @@ export const errorCreatePoll = (error) => ({
   error
 });
 
+export const CAST_VOTE = 'CAST_VOTE';
+export const castVote = () => ({
+  type: CAST_VOTE
+})
+
 export const createPoll = (json) => dispatch => {
   dispatch(requestCreatePoll());
   fetch('/api/polls',{
