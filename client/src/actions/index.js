@@ -111,7 +111,7 @@ export const errorPollRecipient = (error) => ({
 });
 
 export const getPollRecipient = id => dispatch => {
-  console.log(id);
+  // console.log(id);
   dispatch(requestPollRecipient());
   return fetch(`/api/polls/${id}`)
     .then(res => res.json())
