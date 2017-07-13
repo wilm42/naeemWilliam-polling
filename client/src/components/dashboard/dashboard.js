@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPolls from './myPolls';
+import AllPolls from './allpolls';
 import SelectedPoll from './selectedPoll';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
@@ -14,7 +14,7 @@ export class Dashboard extends React.Component {
   render(){
     return(
       <div>
-        <MyPolls />
+        <AllPolls />
         <SelectedPoll />
       </div>
     );

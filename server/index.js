@@ -61,31 +61,27 @@ app.post('/api/polls', (req, res) => {
             return res.status(400).send(message);
         }
     }
-    const moreRequiredFields =['choice', 'vote']
-    // for (let i=0; i<moreRequiredFields.length; i++){
-    //     const otherField = moreRequiredFields[i];
-    //     if (!(otherField in req.body.choices)){
-    //         const errorMessage = `Missing \`${otherField}\` in request body`;
-    //         console.error(errorMessage);
-    //     return res.status(400).send(errorMessage);  
-    //     }
-    // }
-     // req.check('choice-two', 'invalid choice').isLength({min: 1});
-    // req.check('poll-question', 'invalid question').isLength({min: 5});
-    // req.check('poll-choices', 'invalid number of choices').isLength({min: 2});
+    const moreRequiredFields =[ 'vote', 'choice', ]
+    for (let i=0; i<moreRequiredFields.length; i++){
+        const otherField = moreRequiredFields[i];
+        if (!(otherField in req.body.choices[0] && otherField in req.body.choices[1])){
+            console.log(req.body)
+            const errorMessage = `Missing \`${otherField}\` in request body choices`;
+            console.error(errorMessage);
+        return res.status(400).send(errorMessage);  
+        }
+    }
+   
     Poll
         .create({
                 text: req.body.text,
                title: req.body.title,
                choices: req.body.choices,
-               createdDate: req.body.createdDate
-
-           }) 
-          
+        }) 
         .then(polls => res.status(201).json(polls.apiRepr()))
         .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'Something went wrong'});
+        res.status(500).json({error: 'If you are receiving this error, either you have left a required field blank or you have not chosen a unique title.'});
     });
 
 });

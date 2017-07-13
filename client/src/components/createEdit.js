@@ -54,35 +54,42 @@ export class CreateEdit extends React.Component{
     this.setState({recipients: updated});
   }
 
-  compileAndPost(e){
-    e.preventDefault();
-    const months = ['jan','feb','mar','apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = months[today.getMonth()];
-    let yyyy = today.getFullYear();
-    today = `${mm} ${dd}, ${yyyy}`;
-    let postJson = JSON.stringify({...this.state, createdDate: today});
-    console.log(postJson);
-  };
+  // compileAndPost(e){
+  //   e.preventDefault();
+  //   const months = ['jan','feb','mar','apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  //   let today = new Date();
+  //   let dd = today.getDate();
+  //   let mm = months[today.getMonth()];
+  //   let yyyy = today.getFullYear();
+  //   today = `${mm} ${dd}, ${yyyy}`;
+  //   let postJson = JSON.stringify({...this.state, createdDate: today});
+  //   console.log(postJson);
+  // };
 
   render(){
     return(
       <div>
-        <label htmlFor="createEdit"><h2> Create / Edit Poll </h2></label>
+          <label htmlFor="createEdit"><h2> Create / Edit Poll </h2></label>
         <form id="createEdit">
           <label htmlFor="title"><h3>Title</h3></label>
-          <input type="text" id="title" placeholder="Enter Poll Title Here..." value={this.state.title} onChange={e=> this.handleOnChange({title: e.target.value})}/>
+          <input type="text" id="title" placeholder="Enter Poll Title Here..." 
+          value={this.state.title} onChange={e=> this.handleOnChange({title: e.target.value})}/>
           <label htmlFor="Question"><h3>Question</h3></label>
-          <input type="text" id="question" placeholder="Enter Question Here..." value={this.state.text} onChange={e=> this.handleOnChange({text: e.target.value})}/>
+          <input type="text" id="question" placeholder="Enter Question Here..."
+           value={this.state.text} onChange={e=> this.handleOnChange({text: e.target.value})}/>
           <label htmlFor="choice"><h3>Answer choices</h3></label>
           <ul>
-            <li><input type="text" id="choice-0" placeholder="Enter an answer choice..." value={this.state.choices[0].choice} onChange={e=> this.handleChoiceChange(0, e.target.value)}/></li>
-            <li><input type="text" id="choice-1" placeholder="Enter an answer choice..." value={this.state.choices[1].choice} onChange={e=> this.handleChoiceChange(1, e.target.value)}/></li>
-            <li><input type="text" id="choice-2" placeholder="Enter an answer choice..." value={this.state.choices[2].choice} onChange={e=> this.handleChoiceChange(2, e.target.value)}/></li>
-            <li><input type="text" id="choice-3" placeholder="Enter an answer choice..." value={this.state.choices[3].choice} onChange={e=> this.handleChoiceChange(3, e.target.value)}/></li>
+            <li><input type="text" id="choice-0" placeholder="Enter an answer choice..."
+             value={this.state.choices[0].choice} onChange={e=> this.handleChoiceChange(0, e.target.value)}/></li>
+            <li><input type="text" id="choice-1" placeholder="Enter an answer choice..." 
+            value={this.state.choices[1].choice} onChange={e=> this.handleChoiceChange(1, e.target.value)}/></li>
+            <li><input type="text" id="choice-2" placeholder="Enter an answer choice..."
+             value={this.state.choices[2].choice} onChange={e=> this.handleChoiceChange(2, e.target.value)}/></li>
+            <li><input type="text" id="choice-3" placeholder="Enter an answer choice..." 
+            value={this.state.choices[3].choice} onChange={e=> this.handleChoiceChange(3, e.target.value)}/></li>
           </ul>
-          <button id="submitPoll" onClick={e=> this.compileAndPost(e)}>Save Poll</button>
+          <button id="submitPoll">Save Poll</button>
+          
           {/*<label htmlFor="recipient"><h3>Send your poll...</h3></label>
           <ul>
             <li><input type="text" id="recipient-0" placeholder="Enter Recipient Email Here..."/></li>
@@ -100,3 +107,5 @@ export class CreateEdit extends React.Component{
 };
 
 export default connect()(CreateEdit);
+
+//CUT FROM LINE 86 onClick={e=> this.compileAndPost(e)
