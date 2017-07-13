@@ -14,7 +14,7 @@ export class SelectedPoll extends React.Component {
   }
 
   render(){
-    const selectedPoll = this.props.myPolls[this.props.selectedPoll];
+    const selectedPoll = this.props.allPolls[this.props.selectedPoll];
     const totalVotes = this.countVotes(selectedPoll.choices);
     const results = selectedPoll.choices.map((option, index)=>{
       return <li key={index}> {option.choice} |  {option.vote} votes | {option.vote / totalVotes * 100}% </li>
@@ -31,7 +31,7 @@ export class SelectedPoll extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  myPolls: state.myPolls,
+  allPolls: state.allPolls,
   selectedPoll: state.selectedPoll,
 });
 

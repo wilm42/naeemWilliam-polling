@@ -1,7 +1,7 @@
 import * as actions from '../actions';
 
 const initialState = {
-  myPolls:[
+  allPolls:[
     {
       title: 'Vacation',
       question: 'Where should I go on vacation this year?',
@@ -70,7 +70,7 @@ export const reducer = (state=initialState, action)=>{
       return Object.assign({}, state, {
         loading:false,
         error:null,
-        myPolls: action.response
+        allPolls: action.response
       });
     case actions.ERROR_GET_POLLS:
       return Object.assign({}, state, {

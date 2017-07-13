@@ -2,22 +2,23 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
-export class MyPolls extends React.Component{
+export class AllPolls extends React.Component{
 
   selectPoll(e){
     e.preventDefault;
+
     this.props.dispatch(actions.selectPoll(e.target.value));
   }
 
   render(){
-    const myPolls = this.props.myPolls.map((poll, index) => (
+    const allPolls = this.props.allPolls.map((poll, index) => (
       <li key={index}><button value={index} onClick={e=> this.selectPoll(e)}>{poll.title}</button></li>
     ));
     return(
       <div>
-          <h2> My Polls </h2>
+          <h2> All Polls </h2>
           <div>
-            <ul>{myPolls}</ul>
+            <ul>{allPolls}</ul>
           </div>
       </div>
     );
@@ -25,7 +26,7 @@ export class MyPolls extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  myPolls: state.myPolls
+  allPolls: state.allPolls
 });
 
-export default connect(mapStateToProps)(MyPolls);
+export default connect(mapStateToProps)(AllPolls);

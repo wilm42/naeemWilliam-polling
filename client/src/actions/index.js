@@ -1,6 +1,6 @@
-export const REQUEST_MAKE_SELECTION = 'REQUEST_MAKE_SELECTION';
-export const requestMakeSelection = (selectionIndex) => ({
-  type: REQUEST_MAKE_SELECTION,
+export const REQUEST_ONE_POLL = 'REQUEST_ONE_POLL';
+export const requestOnePoll = (selectionIndex) => ({
+  type: REQUEST_ONE_POLL,
   selectionIndex
 });
 
@@ -16,10 +16,25 @@ export const errorMakeSelection = (error) => ({
   error
 });
 
+export const getOnePoll = (pollId) => dispatch => {
+  dispatch(requestOnePoll());
+   return fetch(`/api/polls/${pollId}`,{
+    'method': 'GET by id',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+   // 'body': JSON.stringify(putBody)  COME BACK HERE TO WORK ON FETCH FOR SINGLE POLL
+  })
+  .then(res=> res.json())
+  .then(res=> dispatch(successMakeSelection(res)))
+  .catch(error=> dispatch(errorMakeSelection(error)))
+
+}
+
 export const recipientMakeSelection = (pollId, choices, selectionId) => dispatch => {
   choices[selectionId].vote = choices[selectionId].vote + 1;
   const putBody = Object.assign({}, {choices})
-  dispatch(requestMakeSelection());
+  dispatch(requestOnePoll());
   return fetch(`/api/polls/${pollId}`,{
     'method': 'PUT',
     headers:{
