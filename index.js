@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
     // in development
     const runServer = require('./server').runServer;
     // Just run the server
-    runServer(undefined, process.env.PORT || 8080);
+    runServer( process.env.PORT || 8080);
 }
 else {
     const app = express();
