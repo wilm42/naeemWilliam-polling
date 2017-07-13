@@ -101,16 +101,28 @@ export const castVote = () => ({
   type: CAST_VOTE
 })
 
-export const createPoll = (json) => dispatch => {
+// export const createPoll = (json) => dispatch => {
+//   dispatch(requestCreatePoll());
+//   return fetch('/api/polls',{
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": 'applicaton/json'
+//     },
+//     body: JSON.string
+//   });
+// }
+
+export const createPoll = (obj) => dispatch => {
+  console.log(obj);
   dispatch(requestCreatePoll());
-  fetch('/api/polls',{
+  return fetch('/api/polls',{
     method: 'POST',
     headers: {
-      "Content-Type": 'applicaton/json'
+      "Content-Type": 'application/json'
     },
-    body: json
+    body: JSON.stringify(obj)
   });
-}
+};
 
 export const REQUEST_POLL_RECIPIENT = 'REQUEST_POLL_RECIPIENT';
 export const requestPollRecipient = () => ({

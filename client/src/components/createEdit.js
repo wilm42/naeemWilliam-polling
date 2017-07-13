@@ -27,7 +27,7 @@ export class CreateEdit extends React.Component{
           vote: 0
         }
       ],
-      createdDate: '',
+      // createdDate: '',
       // recipients:[
       //   {email: ''},
       //   {email: ''},
@@ -60,15 +60,8 @@ export class CreateEdit extends React.Component{
 
   compileAndPost(e){
     e.preventDefault();
-    // const months = ['jan','feb','mar','apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-    // let today = new Date();
-    // let dd = today.getDate();
-    // let mm = months[today.getMonth()];
-    // let yyyy = today.getFullYear();
-    // today = `${mm} ${dd}, ${yyyy}`;
-    let postJson = JSON.stringify({...this.state});
-    console.log(postJson);
-    this.props.dispatch(actions.createPoll(postJson));
+    let obj = {...this.state};
+    this.props.dispatch(actions.createPoll(obj));
   };
 
   render(){
