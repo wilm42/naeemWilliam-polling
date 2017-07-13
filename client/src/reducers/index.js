@@ -85,6 +85,21 @@ export const reducer = (state=initialState, action)=>{
       return Object.assign({}, state, {
         castVote: true
       });
+    case actions.REQUEST_POLL_RECIPIENT:
+      return Object.assign({}, state, {
+        loading: true,
+        error:null
+      });
+    case actions.ERROR_POLL_RECIPIENT:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.error
+      });
+    case actions.SUCCESS_POLL_RECIPIENT:
+      console.log('setting response to state.recipient')
+      return Object.assign({}, state, {
+        recipient: action.response
+      });
     default:
       return state
   }
