@@ -11,7 +11,9 @@ export class App extends Component {
    return (
      <Router>
       <div className="app">
-          <Header />
+          <div className="header-container container">
+            <Header />
+          </div>
           <main>
             
               <Route exact path="/" component={Dashboard} />

@@ -1,7 +1,145 @@
 *{
   box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:20px;
 }
 
-container{
+.container{
   display: flex;
+}
+
+.column{
+  flex-direction:column;
+}
+
+.app{
+  height: 100vh;
+}
+
+header{
+  font-family: 'Ubuntu', sans-serif;
+  font-size:20px;
+  justify-content: space-between;
+  align-content: center;
+  width:95%;
+  max-width:2500px;
+  margin:auto;
+  color:white;
+}
+
+.logo{
+  font-size:48px;
+  display:flex;
+  align-content: center;
+}
+
+.logoText{
+  margin-top:3px;
+}
+
+.logo > img{
+  height:51px;
+  width:51px;
+  margin-right:10px;
+}
+
+header > nav > a{
+  text-decoration: none;
+  color:white;
+  margin:auto;
+}
+
+main{
+  width:95%;
+  max-width:2500px;
+  margin:auto;
+}
+
+.header-container{
+  background-color:#21A0A0;
+  height: 93px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle{
+  font-size:48px;
+  color: #046865;
+  margin-bottom:10px;
+}
+
+.sectionTitle.allPolls{
+  text-align: center;
+}
+
+.section{
+  background-color: #21A0A0;
+  border-radius:10px;
+  overflow: scroll;
+  height:100%;
+}
+
+.section.allPolls{
+  height:500px;
+  min-width:300px;
+  margin-right:40px;
+}
+
+.allPolls > ul > li > button{
+  border:none;
+  background-color: #21A0A0;
+  width:100%;
+  font-size: 36px;
+  color:white;
+  text-align: left;
+  padding:30px;
+  border-bottom: solid 3px #046865;
+}
+
+.allPolls > ul > li > button:active{
+  outline:none;
+}
+
+.section.selectedPoll{
+  background-color:white;
+  height:500px;
+  padding:20px;
+  border: solid 4px #046865;
+  width:100%;
+  position:relative;
+  padding-top:200px;
+}
+
+.sectionTitle.selectedPoll{
+  text-align:center;
+}
+
+.dashboard{
+  justify-content: space-between;
+  margin:auto;
+}
+
+.section-container{
+  width:100%;
+}
+
+.selectedPoll-header{
+  background-color:#21A0A0;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  padding:30px;
+  font-size:48px;
+  color:white;
+  height:125px;
+}
+
+.pollInfo{
+  font-size: 24px;
+  background-color:#046865;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:10px;
 }

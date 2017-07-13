@@ -15,8 +15,8 @@ export class AllPolls extends React.Component{
     ));
     return(
       <div>
-          <h2> All Polls </h2>
-          <div>
+          <h2 className="sectionTitle allPolls"> All Polls </h2>
+          <div className="section allPolls">
             <ul>{allPolls}</ul>
           </div>
       </div>
