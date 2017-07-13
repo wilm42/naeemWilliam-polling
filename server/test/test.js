@@ -47,7 +47,7 @@ function dropTestData() {
   return mongoose.connection.dropDatabase();
 }
 
-describe('Posts', function(){
+describe('Testing endpoints', function(){
   before(function(){
     return runServer(TEST_DATABASE_URL);
   })

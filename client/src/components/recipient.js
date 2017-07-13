@@ -9,19 +9,27 @@ export class Recipient extends React.Component {
     this.props.dispatch(actions.getPolls());
   }
 
-  makeSelection(v){
-    this.props.dispatch(actions.recipientMakeSelection(this.props.myPolls[1].id, this.props.myPolls[1].choices, v));
+  makeSelection(value){
+    event.preventDefault();
+    this.props.dispatch(actions.recipientMakeSelection(this.props.myPolls[1].id, this.props.myPolls[1].choices, value));
   };
   
+  
+
   render(){
+    let value;
     const choices = this.props.myPolls[1].choices.map((choice, index)=>{
-      return <div> <input key={index} type="radio" name="pollChoice" value={index} onClick={e => this.makeSelection(e.target.value)} /> {choice.choice} </div>
+      value = index;
+      return <div> <input key={index} type="radio" name="pollChoice" value={index} /> {choice.choice} </div>
     });
     return (
       <div>
         <h2> {this.props.myPolls[1].title} </h2>
         <h3> {this.props.myPolls[1].text} </h3>
         <form>{choices}</form>
+        <button onClick={e => {
+          console.log(value)
+          return this.makeSelection(value)}}>Submit</button>
       </div>
     );
   };
@@ -30,7 +38,8 @@ export class Recipient extends React.Component {
 const mapStateToProps = state => ({
   myPolls: state.myPolls,
   hasSelected: state.recipientHasSelected,
-  selectedChoice: state.recipientChoice
+  selectedChoice: state.recipientChoice,
+
 });
 
 export default connect(mapStateToProps)(Recipient);
