@@ -17,7 +17,7 @@ class App extends Component {
           <main>
             
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/poll" component={Poll} />
+              <Route exact path="/poll/:pollId" component={Poll} />
               <Route exact path="/create" component={CreateEdit} />
           
           </main>

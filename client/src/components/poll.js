@@ -6,14 +6,12 @@ import SelectedPoll from './dashboard/selectedPoll';
 export class Poll extends React.Component {
 
   componentDidMount(){
-    console.log('LOOOK=====>', this.props.myPolls)
-    this.props.dispatch(actions.getPolls());
+    this.props.dispatch(actions.getPollRecipient(this.props.match.params.pollId));
   }
 
   makeSelection(value){
-    event.preventDefault();
     this.props.dispatch(actions.castVote());
-    this.props.dispatch(actions.recipientMakeSelection(this.props.allPolls[1].id, this.props.allPolls[1].choices, value));
+    this.props.dispatch(actions.recipientMakeSelection(this.props.poll.id, this.props.poll.choices, value));
   };
   
   
@@ -49,11 +47,11 @@ export class Poll extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  allPolls: state.allPolls,
+  poll: state.recipient,
   hasSelected: state.recipientHasSelected,
   selectedChoice: state.recipientChoice,
+  id: props.match.params.pollId,
   castVote: state.castVote
-
 });
 
 export default connect(mapStateToProps)(Poll);
