@@ -18,7 +18,7 @@ export class Poll extends React.Component {
 
   render(){
     let value;
-    const choices = this.props.allPolls[1].choices.map((choice, index)=>{
+    const choices = this.props.poll.choices.map((choice, index)=>{
       value = index;
       console.log("THIS IS CHOICE====>", choice)
       return <div> <input key={index} type="radio" name="pollChoice" value={index} /> {choice.choice} </div>
@@ -27,8 +27,8 @@ export class Poll extends React.Component {
     if(this.props.castVote === false){
          return (
       <div>
-        <h2> {this.props.allPolls[1].title} </h2>
-        <h3> {this.props.allPolls[1].text} </h3>
+        <h2> {this.props.poll.title} </h2>
+        <h3> {this.props.poll.text} </h3>
         <form>{choices}</form>
         <button onClick={e => {
           console.log(value)
@@ -46,7 +46,7 @@ export class Poll extends React.Component {
   };
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   poll: state.recipient,
   hasSelected: state.recipientHasSelected,
   selectedChoice: state.recipientChoice,
