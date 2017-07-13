@@ -16,8 +16,6 @@ export class Poll extends React.Component {
     this.props.dispatch(actions.recipientMakeSelection(this.props.poll.id, this.props.poll.choices, value));
   };
   
-  
-
   render(){
     let value;
     const choices = this.props.poll.choices.map((choice, index)=>{
