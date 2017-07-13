@@ -20,12 +20,16 @@ export class SelectedPoll extends React.Component {
       return <li key={index}> {option.choice} |  {option.vote} votes | {option.vote / totalVotes * 100}% </li>
     });
     return (
-      <div>
-        <h2> {selectedPoll.title} </h2>
-        <h3> {selectedPoll.text} </h3>
-        <span>poll created: {moment(`${selectedPoll.date}`).format('LL')} | total votes: {totalVotes}</span>
-        <ul>{results}</ul>
-        <span>Link to your poll: http://localhost:8080/poll/{selectedPoll.id}</span>
+      <div className="section-container">
+        <h2 className="sectionTitle selectedPoll">{selectedPoll.title}</h2>
+        <div className="section selectedPoll">
+          <div className="selectedPoll-header">
+            <h3> {selectedPoll.text} </h3>
+            <span className="pollInfo">poll created: {moment(`${selectedPoll.date}`).format('LL')} | total votes: {totalVotes}</span>
+          </div>
+          <ul>{results}</ul>
+          <span>Link to your poll: http://localhost:8080/poll/{selectedPoll.id}</span>
+        </div>
       </div>
     );
   }

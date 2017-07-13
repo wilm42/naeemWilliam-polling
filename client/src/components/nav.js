@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom';
 
 export class Nav extends React.Component{
   render(){
-    let nav = <Link to={this.props.navState.link}> {this.props.navState.text} </Link>;
+    let nav = <Link to={this.props.navState.link} className="container column"> {this.props.navState.text} </Link>;
     return(
-      <nav>{nav}</nav>
+      <nav className="container">{nav}</nav>
     );
   }
 }

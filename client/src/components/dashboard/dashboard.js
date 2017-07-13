@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
      
   render(){
     return(
-      <div>
+      <div className="container dashboard">
         <AllPolls />
         <SelectedPoll />
       </div>
