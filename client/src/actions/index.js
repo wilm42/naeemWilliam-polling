@@ -137,3 +137,4 @@ export const getPollRecipient = id => dispatch => {
     .then(json => dispatch(successPollRecipient(json)))
     .catch(error => dispatch(errorPollRecipient(error)));
 };
+

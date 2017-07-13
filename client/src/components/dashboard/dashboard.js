@@ -5,11 +5,24 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
 export class Dashboard extends React.Component {
+  
+  
+
 
   componentDidMount(){
-    console.log('getting the polls')
-    this.props.dispatch(actions.getPolls());
+    this.props.dispatch(actions.getPolls())
+    this.interval =  setInterval(() =>{
+      console.log('I work')
+     this.props.dispatch(actions.getPolls())
+    }, 5000)
+    
+  }  
+
+
+  componentWillUnmount(){
+    this.interval = this.interval.destroy()
   }
+
 
   render(){
     return(
