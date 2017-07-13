@@ -23,7 +23,7 @@ const initialState = {
           count: 7
         }
       ],
-      createdDate: '7/11/2017',
+      date: '7/11/2017',
       totalVotes: 40
     },
     {
@@ -47,7 +47,7 @@ const initialState = {
           count: 7
         }
       ],
-      createdDate: '7/11/2017',
+      date: '7/11/2017',
       totalVotes: 40
     }
   ],
@@ -57,7 +57,7 @@ const initialState = {
 };
 
 export const reducer = (state=initialState, action)=>{
-  console.log(action);
+  console.log('this is object', action);
   switch(action.type){
     
     case actions.REQUEST_GET_POLLS:

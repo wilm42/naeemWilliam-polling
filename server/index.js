@@ -81,7 +81,7 @@ app.post('/api/polls', (req, res) => {
         .then(polls => res.status(201).json(polls.apiRepr()))
         .catch(err => {
         console.error(err);
-        res.status(500).json({error: 'Something went wrong'});
+        res.status(500).json({error: 'If you are receiving this error, either you have left a required field blank or you have not chosen a unique title.'});
     });
 
 });

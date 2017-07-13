@@ -79,7 +79,6 @@ describe('Posts', function(){
                         item.should.include.keys(expectedKeys);
                       })
                       const choicesKeys = ['choice', 'vote'];
-                      
                       res.body[7].choices.forEach(function (item) {
                         item.should.include.keys(choicesKeys)
                       })
