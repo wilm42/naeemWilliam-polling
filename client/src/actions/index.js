@@ -99,18 +99,25 @@ export const errorCreatePoll = (error) => ({
 export const CAST_VOTE = 'CAST_VOTE';
 export const castVote = () => ({
   type: CAST_VOTE
-})
+});
 
-export const createPoll = (json) => dispatch => {
+export const createPoll = (obj, history) => dispatch => {
   dispatch(requestCreatePoll());
-  fetch('/api/polls',{
+  return fetch('/api/polls',{
     method: 'POST',
     headers: {
-      "Content-Type": 'applicaton/json'
+      "Content-Type": 'application/json'
     },
-    body: json
+    body: JSON.stringify(obj)
+  })
+  .then(res => {
+    dispatch(successCreatePoll(res));
+    history.push('/');
+  })
+  .catch(error => {
+    dispatch(errorCreatePoll(error))
   });
-}
+};
 
 export const REQUEST_POLL_RECIPIENT = 'REQUEST_POLL_RECIPIENT';
 export const requestPollRecipient = () => ({
@@ -137,3 +144,18 @@ export const getPollRecipient = id => dispatch => {
     .then(json => dispatch(successPollRecipient(json)))
     .catch(error => dispatch(errorPollRecipient(error)));
 };
+
+export const NAV_STATE_DASHBOARD = 'NAV_STATE_DASHBOARD';
+export const navStateDashboard = () => ({
+  type: NAV_STATE_DASHBOARD
+});
+
+export const NAV_STATE_CREATE = 'NAV_STATE_CREATE';
+export const navStateCreate = () => ({
+  type: NAV_STATE_CREATE
+});
+
+export const NAV_STATE_RECIPIENT = 'NAV_STATE_RECIPIENT';
+export const navStateRecipient = () => ({
+  type: NAV_STATE_RECIPIENT
+});

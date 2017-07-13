@@ -6,7 +6,6 @@ export class AllPolls extends React.Component{
 
   selectPoll(e){
     e.preventDefault;
-
     this.props.dispatch(actions.selectPoll(e.target.value));
   }
 

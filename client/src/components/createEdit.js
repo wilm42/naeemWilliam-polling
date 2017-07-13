@@ -27,7 +27,7 @@ export class CreateEdit extends React.Component{
           vote: 0
         }
       ],
-      createdDate: '',
+      // createdDate: '',
       // recipients:[
       //   {email: ''},
       //   {email: ''},
@@ -36,6 +36,10 @@ export class CreateEdit extends React.Component{
       // ],
       // recipientMessage: '',
     }
+  }
+
+  componentDidMount(){
+    this.props.dispatch(actions.navStateCreate());
   }
 
   handleOnChange(set){
@@ -54,17 +58,11 @@ export class CreateEdit extends React.Component{
     this.setState({recipients: updated});
   }
 
-  // compileAndPost(e){
-  //   e.preventDefault();
-  //   const months = ['jan','feb','mar','apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-  //   let today = new Date();
-  //   let dd = today.getDate();
-  //   let mm = months[today.getMonth()];
-  //   let yyyy = today.getFullYear();
-  //   today = `${mm} ${dd}, ${yyyy}`;
-  //   let postJson = JSON.stringify({...this.state, createdDate: today});
-  //   console.log(postJson);
-  // };
+  compileAndPost(e){
+    e.preventDefault();
+    let obj = {...this.state};
+    this.props.dispatch(actions.createPoll(obj, this.props.history));
+  };
 
   render(){
     return(
@@ -88,7 +86,7 @@ export class CreateEdit extends React.Component{
             <li><input type="text" id="choice-3" placeholder="Enter an answer choice..." 
             value={this.state.choices[3].choice} onChange={e=> this.handleChoiceChange(3, e.target.value)}/></li>
           </ul>
-          <button id="submitPoll">Save Poll</button>
+          <button id="submitPoll" onClick={e=> this.compileAndPost(e)}>Save Poll</button>
           
           {/*<label htmlFor="recipient"><h3>Send your poll...</h3></label>
           <ul>
