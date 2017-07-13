@@ -16,17 +16,17 @@ export class Dashboard extends React.Component {
     this.intervalId = setInterval(() => {this.props.dispatch(actions.getPolls())}, 5000)
   }
 
-
+     
   render(){
     return(
       <div>
         <AllPolls />
         <SelectedPoll />
       </div>
-    );
+    );   
   }
 
-  componentWillUnmount(){
+  componentWillUnmount(){  
     clearInterval(this.intervalId);
   }
 }

@@ -145,8 +145,6 @@ export const getPollRecipient = id => dispatch => {
     .catch(error => dispatch(errorPollRecipient(error)));
 };
 
-<<<<<<< HEAD
-=======
 export const NAV_STATE_DASHBOARD = 'NAV_STATE_DASHBOARD';
 export const navStateDashboard = () => ({
   type: NAV_STATE_DASHBOARD
@@ -154,11 +152,10 @@ export const navStateDashboard = () => ({
 
 export const NAV_STATE_CREATE = 'NAV_STATE_CREATE';
 export const navStateCreate = () => ({
-  type: NAV_STATE_CREATE
+  type: NAV_STATE_CREATE  
 });
 
 export const NAV_STATE_RECIPIENT = 'NAV_STATE_RECIPIENT';
 export const navStateRecipient = () => ({
   type: NAV_STATE_RECIPIENT
 });
->>>>>>> 86bb161bd9b9e978506b7b11ba0d548741baa9e9
