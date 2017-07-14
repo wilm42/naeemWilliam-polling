@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 const moment = require('moment')
 
 export class SelectedPoll extends React.Component {
@@ -38,7 +39,7 @@ export class SelectedPoll extends React.Component {
           <div className="bottomHalf">
             <ul className="results">{results}</ul>
           </div>
-          <div className="link"><Link to="/poll/{selectedPoll.id}">Link to your poll</Link></div>
+          <div className="link"><Link to={`/poll/${selectedPoll.id}`}>Link to your poll</Link></div>
         </div>
       </div>
     );
