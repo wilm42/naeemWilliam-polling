@@ -15,10 +15,10 @@ export class SelectedPoll extends React.Component {
 
   render(){
     const selectedPoll = this.props.allPolls[this.props.selectedPoll];
-    console.log(this.props.selectedPoll);
     const totalVotes = this.countVotes(selectedPoll.choices);
     const results = selectedPoll.choices.map((option, index)=>{
       let perc;
+      console.log(option.choice, option.vote);
       if(option.vote == 0){
         perc = `0%`
       }

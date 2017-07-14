@@ -6,9 +6,6 @@ import * as actions from '../../actions';
 
 export class Dashboard extends React.Component {
   
-  
-
-
   componentDidMount(){
     console.log('getting the polls')
     this.props.dispatch(actions.getPolls());

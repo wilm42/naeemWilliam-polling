@@ -12,6 +12,7 @@ export class Poll extends React.Component {
   }
 
   makeSelection(value){
+    console.log(value);
     this.props.dispatch(actions.castVote());
     this.props.dispatch(actions.recipientMakeSelection(this.props.poll.id, this.props.poll.choices, value));
   };
@@ -19,22 +20,20 @@ export class Poll extends React.Component {
   render(){
     let value;
     const choices = this.props.poll.choices.map((choice, index)=>{
-      value = index;
-      console.log("THIS IS CHOICE====>", choice)
-      return <div> <input key={index} type="radio" name="pollChoice" value={index} /> {choice.choice} </div>
+      return <div key={index} className="radio-div"> <input type="radio" name="pollChoice" value={index} id={`button-${index}`} onClick={e=> this.makeSelection(e.target.value)}/> <label htmlFor={`button-${index}`}><div className="radio-circle"></div>{choice.choice}</label></div>
     });
     let feedbackModal;
     if(this.props.castVote){
-      feedbackModal = <div><h2>Thanks for your input!</h2><span><Link to="/create">Create your own poll</Link></span></div>
+      feedbackModal = <div className="feedbackModal"><h2>Thanks for your input!</h2><span><Link to="/create">Create your own poll</Link></span></div>
     }
     return (
       <div>
-        <h2> {this.props.poll.title} </h2>
-        <h3> {this.props.poll.text} </h3>
-        <form>{choices}</form>
-        <button onClick={e => {
-          return this.makeSelection(value)}}>Submit</button>
-        {feedbackModal}
+        <h2 className="title"> {this.props.poll.title} </h2>
+        <div className="section poll">
+          <h3 className="question"> {this.props.poll.text} </h3>
+          <form>{choices}</form>
+        </div>
+        <div className={this.props.castVote ? 'feedbackModal show' : 'feedbackModal'}><h2 className="feedback">Thanks for your input!</h2><Link to="/create">Create your own poll</Link></div>
       </div>
     );
   };
