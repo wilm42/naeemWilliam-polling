@@ -16,6 +16,7 @@ Node.js is our bedrock<br>
 
 <h3>On the front-end</h3>
 •	React-Redux<br>
+•	CSS<br>
 
 <h2>Getting started</h2><br>
 
