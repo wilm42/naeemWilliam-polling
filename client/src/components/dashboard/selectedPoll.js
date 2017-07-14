@@ -38,7 +38,7 @@ export class SelectedPoll extends React.Component {
           <div className="bottomHalf">
             <ul className="results">{results}</ul>
           </div>
-          <div className="link">Link to your poll: https://shielded-sea-55652.herokuapp.com/poll/{selectedPoll.id}</div>
+          <div className="link"><Link to="/poll/{selectedPoll.id}">Link to your poll</Link></div>
         </div>
       </div>
     );
