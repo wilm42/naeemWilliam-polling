@@ -1,4 +1,6 @@
-Why Pollster
+
+
+
 
 Pollster was designed as a clever device to enhance the way you gather the world’s opinion. It will take you to new frontiers as you seek answers to the questions important to you. And to top it all off it’s probably one of the simplest yet most efficient machines in your toolkit. Let Pollster take you to the next level in online polling. We provide a snazzy user interface backed by a fierce database to collect opinions worldwide. Ask questions on whatever, to whoever, and since access is important, whenever you want. Pollster is your go to.
 
