@@ -86,7 +86,7 @@ export const reducer = (state=initialState, action)=>{
       });
     case actions.SELECT_POLL:
       return Object.assign({}, state, {
-        selectedPoll: action.index
+        selectedPoll: action.selected
       });
     case actions.CAST_VOTE:
       return Object.assign({}, state, {

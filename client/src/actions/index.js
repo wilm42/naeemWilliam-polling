@@ -74,9 +74,9 @@ export const getPolls = () => dispatch => {
 };
 
 export const SELECT_POLL = 'SELECT_POLL';
-export const selectPoll = index => ({
+export const selectPoll = selected => ({
   type: SELECT_POLL,
-  index
+  selected
 });
 
 export const REQUEST_CREATE_POLL = 'REQUEST_CREATE_POLL';

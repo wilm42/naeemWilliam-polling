@@ -15,9 +15,17 @@ export class SelectedPoll extends React.Component {
 
   render(){
     const selectedPoll = this.props.allPolls[this.props.selectedPoll];
+    console.log(this.props.selectedPoll);
     const totalVotes = this.countVotes(selectedPoll.choices);
     const results = selectedPoll.choices.map((option, index)=>{
-      return <li key={index}> {option.choice} |  {option.vote} votes | {option.vote / totalVotes * 100}% </li>
+      let perc;
+      if(option.vote == 0){
+        perc = `0%`
+      }
+      else{
+        perc = `${Math.round(option.vote / totalVotes * 100)}%`
+      }
+      return <li key={index} className="result"> <div className="choice">{option.choice}</div><div className="bar-container"><div className="bar" style={{width: perc}}></div><span className="percentage">{perc}</span></div> <div className="voteCount">{option.vote} votes</div></li>
     });
     return (
       <div className="section-container">
@@ -27,18 +35,22 @@ export class SelectedPoll extends React.Component {
             <h3> {selectedPoll.text} </h3>
             <span className="pollInfo">poll created: {moment(`${selectedPoll.date}`).format('LL')} | total votes: {totalVotes}</span>
           </div>
-          <ul>{results}</ul>
-          <span>Link to your poll: http://localhost:8080/poll/{selectedPoll.id}</span>
+          <div className="bottomHalf">
+            <ul className="results">{results}</ul>
+          </div>
+          <div className="link">Link to your poll: http://localhost:8080/poll/{selectedPoll.id}</div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+return({
   allPolls: state.allPolls,
   selectedPoll: state.selectedPoll,
 });
+}
 
 export default connect(mapStateToProps)(SelectedPoll);
 

@@ -72,22 +72,23 @@ export class CreateEdit extends React.Component{
           <label htmlFor="title"><h3>Title</h3></label>
           <input type="text" id="title" placeholder="Enter Poll Title Here..." 
           value={this.state.title} onChange={e=> this.handleOnChange({title: e.target.value})}/>
-          <label htmlFor="Question"><h3>Question</h3></label>
-          <input type="text" id="question" placeholder="Enter Question Here..."
-           value={this.state.text} onChange={e=> this.handleOnChange({text: e.target.value})}/>
-          <label htmlFor="choice"><h3>Answer choices</h3></label>
-          <ul>
-            <li><input type="text" id="choice-0" placeholder="Enter an answer choice..."
-             value={this.state.choices[0].choice} onChange={e=> this.handleChoiceChange(0, e.target.value)}/></li>
-            <li><input type="text" id="choice-1" placeholder="Enter an answer choice..." 
-            value={this.state.choices[1].choice} onChange={e=> this.handleChoiceChange(1, e.target.value)}/></li>
-            <li><input type="text" id="choice-2" placeholder="Enter an answer choice..."
-             value={this.state.choices[2].choice} onChange={e=> this.handleChoiceChange(2, e.target.value)}/></li>
-            <li><input type="text" id="choice-3" placeholder="Enter an answer choice..." 
-            value={this.state.choices[3].choice} onChange={e=> this.handleChoiceChange(3, e.target.value)}/></li>
-          </ul>
-          <button id="submitPoll" onClick={e=> this.compileAndPost(e)}>Save Poll</button>
-          
+          <div className="section container create">
+            <label htmlFor="Question"><h3>Question</h3></label>
+            <input type="text" id="question" placeholder="Enter Question Here..."
+            value={this.state.text} onChange={e=> this.handleOnChange({text: e.target.value})}/>
+            <label htmlFor="choice"><h3>Answer choices</h3></label>
+            <ul className="choices">
+              <li className="choiceInput"><input type="text" id="choice-0" placeholder="Enter an answer choice..."
+              value={this.state.choices[0].choice} onChange={e=> this.handleChoiceChange(0, e.target.value)}/></li>
+              <li className="choiceInput"><input type="text" id="choice-1" placeholder="Enter an answer choice..." 
+              value={this.state.choices[1].choice} onChange={e=> this.handleChoiceChange(1, e.target.value)}/></li>
+              <li className="choiceInput"><input type="text" id="choice-2" placeholder="Enter an answer choice..."
+              value={this.state.choices[2].choice} onChange={e=> this.handleChoiceChange(2, e.target.value)}/></li>
+              <li className="choiceInput"><input type="text" id="choice-3" placeholder="Enter an answer choice..." 
+              value={this.state.choices[3].choice} onChange={e=> this.handleChoiceChange(3, e.target.value)}/></li>
+            </ul>
+            <button id="submitPoll" onClick={e=> this.compileAndPost(e)}>Save Poll</button>
+          </div>
           {/*<label htmlFor="recipient"><h3>Send your poll...</h3></label>
           <ul>
             <li><input type="text" id="recipient-0" placeholder="Enter Recipient Email Here..."/></li>
