@@ -152,7 +152,7 @@ export const navStateDashboard = () => ({
 
 export const NAV_STATE_CREATE = 'NAV_STATE_CREATE';
 export const navStateCreate = () => ({
-  type: NAV_STATE_CREATE
+  type: NAV_STATE_CREATE  
 });
 
 export const NAV_STATE_RECIPIENT = 'NAV_STATE_RECIPIENT';

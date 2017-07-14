@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions';
 
 export class Dashboard extends React.Component {
+  
+  
+
 
   componentDidMount(){
     console.log('getting the polls')
@@ -13,16 +16,17 @@ export class Dashboard extends React.Component {
     this.intervalId = setInterval(() => {this.props.dispatch(actions.getPolls())}, 5000)
   }
 
+     
   render(){
     return(
       <div className="container dashboard">
         <AllPolls />
         <SelectedPoll />
       </div>
-    );
+    );   
   }
 
-  componentWillUnmount(){
+  componentWillUnmount(){  
     clearInterval(this.intervalId);
   }
 }
