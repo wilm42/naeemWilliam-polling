@@ -1,19 +1,26 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export class Nav extends React.Component{
-  render(){
-    let nav = <Link to={this.props.navState.link} className="container column"> {this.props.navState.text} </Link>;
-    return(
-      <nav className="container">{nav}</nav>
-    );
-  }
+class Nav extends React.Component {
+	signOut() {
+		this.props.auth.signOut();
+	}
+
+	render() {
+		return (
+			<nav className="container">
+				<Link to="/create">+ create new poll </Link>
+				<button type="signOut" id="signOut" onClick={() => this.signOut()}>
+					Sign Out
+				</button>
+			</nav>
+		);
+	}
 }
 
-const mapStateToProps = (state, props) => ({
-  navState: state.navState,
-  link: state.link
+const mapStateToProps = state => ({
+	auth: state.auth,
 });
 
 export default connect(mapStateToProps)(Nav);

@@ -1,35 +1,63 @@
-import React, { Component } from 'react';
-import Dashboard from './dashboard/dashboard.js';
-import Poll from './poll';
-import CreateEdit from './createEdit';
-import Header from './header';
-import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import firebase from "firebase";
 
-export class App extends Component {
-  render() {
-   return (
-     <Router>
-      <div className="app">
-          <div className="header-container container">
-            <Header />
-          </div>
-          <main>
-            
-              <Route exact path="/" component={Dashboard} />
-              <Route exact path="/poll/:pollId" component={Poll} />
-              <Route exact path="/create" component={CreateEdit} />
-          
-          </main>
-        </div> 
-     </Router>
-   );
-  }
+import * as actions from "../actions";
+
+const config = {
+	apiKey: "AIzaSyDa0b-syquw1IEPaCQ58wBHKYlpUhG3eAg",
+	authDomain: "pollster-1f5ec.firebaseapp.com",
+	databaseURL: "https://pollster-1f5ec.firebaseio.com",
+	projectId: "pollster-1f5ec",
+	storageBucket: "pollster-1f5ec.appspot.com",
+	messagingSenderId: "894881247278",
+};
+
+const fire = firebase.initializeApp(config);
+const firedb = fire.database();
+const fireauth = fire.auth();
+
+import Dashboard from "./dashboard/dashboard.js";
+import Poll from "./poll";
+import CreateEdit from "./createEdit";
+import Header from "./header";
+import Landing from "./landing/landing";
+
+class App extends React.Component {
+	componentWillMount() {
+		this.props.dispatch(actions.initialize_firebase(firedb, fireauth));
+	}
+
+	componentDidMount() {
+		fireauth.onAuthStateChanged(user => {
+			if (user) {
+				this.props.dispatch(actions.user_validated());
+			}
+		});
+	}
+
+	render() {
+		return (
+			<Router>
+				<div className="app">
+					<div className="header-container container">
+						<Header />
+					</div>
+					<main>
+						<Route exact path="/" component={Dashboard} />
+						<Route exact path="/poll/:pollId" component={Poll} />
+						<Route exact path="/create" component={CreateEdit} />
+						<Route exact path="/landing" component={Landing} />
+					</main>
+				</div>
+			</Router>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  navState: state.navState
+	navState: state.navState,
 });
 
 export default connect(mapStateToProps)(App);
-
