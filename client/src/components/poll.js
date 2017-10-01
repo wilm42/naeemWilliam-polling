@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import * as actions from "../actions";
-
 export class Poll extends React.Component {
 	constructor() {
 		super();
@@ -54,7 +52,6 @@ export class Poll extends React.Component {
 	}
 
 	render() {
-		let value;
 		let choices = [];
 		for (let choice in this.state.poll.choices) {
 			choices.push(

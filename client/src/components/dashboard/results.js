@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 export default class Results extends React.Component {
 	constructor(props) {
@@ -32,6 +31,7 @@ export default class Results extends React.Component {
 				votes: 0,
 			};
 			for (let vote in choices[choice].votes) {
+				// TODO: There is definitely a better way of counting these. Object.keys?
 				total++;
 				result.votes++;
 			}

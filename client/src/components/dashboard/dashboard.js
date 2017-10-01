@@ -2,7 +2,6 @@ import React from "react";
 import AllPolls from "./allpolls";
 import SelectedPoll from "./selectedPoll";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
 
 export class Dashboard extends React.Component {
 	constructor() {

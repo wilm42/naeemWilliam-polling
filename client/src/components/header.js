@@ -30,7 +30,7 @@ class Header extends React.Component {
 			<header className="container">
 				<Link to="/">
 					<span className="logo">
-						<img src="/images/pollicon.svg" />
+						<img src="/images/pollicon.svg" alt=" " />
 						<span className="logoText">Pollster</span>
 					</span>
 				</Link>
