@@ -48,12 +48,6 @@ export class CreateEdit extends React.Component {
 		this.setState({ choices: updated });
 	}
 
-	handleRecipientChange(index, set) {
-		let updated = { ...this.state.recipients };
-		updated[index].email = set;
-		this.setState({ recipients: updated });
-	}
-
 	compileAndPost(e) {
 		e.preventDefault();
 		let ref = this.props.db.ref(`/polls/${this.state.info.author}`);

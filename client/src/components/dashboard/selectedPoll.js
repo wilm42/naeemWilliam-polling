@@ -50,7 +50,6 @@ export class SelectedPoll extends React.Component {
 	}
 
 	countVotes(choices) {
-		//console.log('THIS IS CHOICES ====>',choices);
 		let total = 0;
 		choices.forEach(choice => {
 			total += choice.vote;
@@ -59,7 +58,6 @@ export class SelectedPoll extends React.Component {
 	}
 
 	render() {
-		console.log(this.state);
 		const { poll, count } = this.state;
 		return (
 			<div className="section-container">

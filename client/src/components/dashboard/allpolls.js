@@ -14,7 +14,6 @@ export class AllPolls extends React.Component {
 	componentDidMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			if (user) {
-				console.log("in the auth block");
 				this.user = user;
 				const polls = this.props.db.ref(`/polls/${user.uid}`);
 				polls.on("value", snap => {

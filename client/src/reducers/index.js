@@ -43,7 +43,6 @@ export const reducer = (state = initialState, action) => {
 				user: true,
 			});
 		case actions.SELECT_POLL:
-			console.log("poll selected:", action.pollId);
 			const selectedPoll = `/${action.userId}/${action.pollId}`;
 			return Object.assign({}, state, {
 				selectedPoll: selectedPoll,
@@ -79,7 +78,6 @@ export const reducer = (state = initialState, action) => {
 				error: action.error,
 			});
 		case actions.SUCCESS_POLL_RECIPIENT:
-			console.log("setting response to state.recipient");
 			return Object.assign({}, state, {
 				recipient: action.response,
 			});

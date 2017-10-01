@@ -76,15 +76,3 @@ export default class Results extends React.Component {
 		);
 	}
 }
-
-// const totalVotes = this.countVotes(selectedPoll.choices);
-// const results = selectedPoll.choices.map((option, index)=>{
-//   let perc;
-//   console.log(option.choice, option.vote);
-//   if(option.vote == 0){
-//     perc = `0%`
-//   }
-//   else{
-//     perc = `${Math.round(option.vote / totalVotes * 100)}%`
-//   }
-//   return <li key={index} className="result"> <div className="choice">{option.choice}</div><div className="bar-container"><div className="bar" style={{width: perc}}></div><span className="percentage">{perc}</span></div> <div className="voteCount">{option.vote} votes</div></li>
