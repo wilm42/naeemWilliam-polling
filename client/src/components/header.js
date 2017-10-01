@@ -14,13 +14,9 @@ class Header extends React.Component {
 	componentDidMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			if (user) {
-				this.setState({
-					showNav: true,
-				});
+				this.setState({ showNav: true });
 			} else {
-				this.setState({
-					showNav: false,
-				});
+				this.setState({ showNav: false });
 			}
 		});
 	}

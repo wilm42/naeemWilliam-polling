@@ -5,25 +5,32 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 export class Dashboard extends React.Component {
-	componentDidMount() {
+	constructor() {
+		super();
+		this.state = {
+			user: null,
+		};
+	}
+	componentWillMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			if (!user) {
 				this.props.history.push("/landing");
+			} else {
+				this.setState({
+					user: user,
+				});
 			}
 		});
 	}
 
 	render() {
+		console.log(this.user);
 		return (
 			<div className="container dashboard">
-				<AllPolls />
+				<AllPolls user={this.state.user} />
 				<SelectedPoll />
 			</div>
 		);
-	}
-
-	componentWillUnmount() {
-		clearInterval(this.intervalId);
 	}
 }
 

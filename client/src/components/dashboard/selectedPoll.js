@@ -17,20 +17,33 @@ export class SelectedPoll extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		const poll = this.props.db.ref(`/polls/${this.props.selectedPoll}`);
-		poll.on("value", snap => {
-			this.setState({ poll: snap.val(), pollId: this.props.selectedPoll });
-		});
+	componentWillMount() {
+		if (this.props.selectedPoll) {
+			const poll = this.props.db.ref(`/polls/${this.props.selectedPoll}`);
+			poll.on("value", snap => {
+				if (snap) {
+					this.setState({
+						poll: snap.val(),
+						pollId: this.props.selectedPoll,
+					});
+				}
+			});
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.selectedPoll !== nextProps.selectedPoll) {
-			const poll = nextProps.db.ref(`/polls/${nextProps.selectedPoll}`);
-			poll.on("value", snap => {
-				this.setState({ poll: snap.val(), pollId: nextProps.selectedPoll });
-			});
-		}
+		// if (this.props.selectedPoll !== nextProps.selectedPoll) {
+		console.log("selected poll is receiving props");
+		const poll = nextProps.db.ref(`/polls/${nextProps.selectedPoll}`);
+		poll.on("value", snap => {
+			if (snap) {
+				this.setState({
+					poll: snap.val(),
+					pollId: nextProps.selectedPoll,
+				});
+			}
+		});
+		// }
 	}
 
 	setCount(count) {
@@ -49,6 +62,7 @@ export class SelectedPoll extends React.Component {
 	}
 
 	render() {
+		console.log(this.state);
 		const { poll, count } = this.state;
 		return (
 			<div className="section-container">

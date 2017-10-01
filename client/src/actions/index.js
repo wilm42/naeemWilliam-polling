@@ -5,9 +5,17 @@ export const initialize_firebase = (firedb, fireauth) => ({
 	fireauth,
 });
 
+export const SELECT_POLL = "SELECT_POLL";
+export const selectPoll = (pollId, userId) => ({
+	type: SELECT_POLL,
+	pollId,
+	userId,
+});
+
 export const USER_VALIDATED = "USER_VALIDATED";
-export const user_validated = () => ({
+export const user_validated = user => ({
 	type: USER_VALIDATED,
+	user,
 });
 
 export const REQUEST_ONE_POLL = "REQUEST_ONE_POLL";
@@ -87,13 +95,6 @@ export const getPolls = () => dispatch => {
 		.then(json => dispatch(successGetpolls(json)))
 		.catch(err => dispatch(errorGetPolls(err)));
 };
-
-export const SELECT_POLL = "SELECT_POLL";
-export const selectPoll = (pollId, userId) => ({
-	type: SELECT_POLL,
-	pollId,
-	userId,
-});
 
 export const REQUEST_CREATE_POLL = "REQUEST_CREATE_POLL";
 export const requestCreatePoll = () => ({

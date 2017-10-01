@@ -6,35 +6,44 @@ export class AllPolls extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			isMounted: false,
+			firebase: false,
 			polls: ["no polls yet, create your first one!"],
 		};
 	}
 
 	componentDidMount() {
-		let firstPoll;
 		this.props.auth.onAuthStateChanged(user => {
 			if (user) {
-				user = user;
+				console.log("in the auth block");
+				this.user = user;
 				const polls = this.props.db.ref(`/polls/${user.uid}`);
 				polls.on("value", snap => {
 					let set = { polls: snap.val() };
-					firstPoll = Object.keys(snap.val())[0];
-					set.selected = firstPoll;
+					set.firstPoll = Object.keys(snap.val())[0];
+					set.selected = set.firstPoll;
+					set.firebase = true;
 					this.setState(set);
 				});
 			}
 		});
-		this.selectPoll(firstPoll);
+	}
+
+	componentDidUpdate() {
+		if (this.state.selected && this.state.firebase) {
+			this.props.dispatch(
+				actions.selectPoll(this.state.selected, this.user.uid),
+			);
+		}
+	}
+
+	componentWillUnmount() {
+		console.log("will unmount");
 	}
 
 	selectPoll(pollId) {
-		this.setState({
-			selected: pollId,
-		});
-		this.props.dispatch(
-			actions.selectPoll(pollId, this.props.auth.currentUser.uid),
-		);
+		if (this.user) {
+			this.setState({ selected: pollId });
+		}
 	}
 
 	render() {

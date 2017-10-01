@@ -21,7 +21,7 @@ const initialState = {
 	],
 	recipientHasSelected: false,
 	recipientChoice: null,
-	selectedPoll: 0,
+	selectedPoll: "",
 	recipient: {
 		choices: [],
 	},
@@ -43,6 +43,7 @@ export const reducer = (state = initialState, action) => {
 				user: true,
 			});
 		case actions.SELECT_POLL:
+			console.log("poll selected:", action.pollId);
 			const selectedPoll = `/${action.userId}/${action.pollId}`;
 			return Object.assign({}, state, {
 				selectedPoll: selectedPoll,

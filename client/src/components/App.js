@@ -29,14 +29,6 @@ class App extends React.Component {
 		this.props.dispatch(actions.initialize_firebase(firedb, fireauth));
 	}
 
-	componentDidMount() {
-		fireauth.onAuthStateChanged(user => {
-			if (user) {
-				this.props.dispatch(actions.user_validated());
-			}
-		});
-	}
-
 	render() {
 		return (
 			<Router>

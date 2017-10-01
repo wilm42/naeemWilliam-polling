@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import * as actions from "../../actions/";
+
 class Landing extends React.Component {
 	constructor() {
 		super();
@@ -13,7 +15,10 @@ class Landing extends React.Component {
 	componentDidMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			if (user) {
-				this.props.history.push("/");
+				this.props.dispatch(actions.user_validated(user));
+				if (user) {
+					this.props.history.push("/");
+				}
 			}
 		});
 	}
@@ -80,6 +85,7 @@ class Landing extends React.Component {
 
 const mapStateToProps = state => ({
 	auth: state.auth,
+	user: state.user,
 });
 
 export default connect(mapStateToProps)(Landing);

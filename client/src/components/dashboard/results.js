@@ -11,6 +11,12 @@ export default class Results extends React.Component {
 		};
 	}
 
+	componentWillMount() {
+		if (this.props.choices) {
+			this.formatResults(this.props.choices);
+		}
+	}
+
 	componentWillReceiveProps(props) {
 		if (this.props.choices !== props.choices) {
 			this.formatResults(props.choices);
