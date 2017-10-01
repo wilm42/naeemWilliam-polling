@@ -1,9 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-const moment = require("moment");
+
+import Results from "./results";
 
 export class SelectedPoll extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			count: 0,
+			poll: {
+				title: "null",
+				question: "null",
+				choices: {},
+			},
+		};
+	}
+
+	componentDidMount() {
+		const poll = this.props.db.ref(`/polls/${this.props.selectedPoll}`);
+		poll.on("value", snap => {
+			this.setState({ poll: snap.val(), pollId: this.props.selectedPoll });
+		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.selectedPoll !== nextProps.selectedPoll) {
+			const poll = nextProps.db.ref(`/polls/${nextProps.selectedPoll}`);
+			poll.on("value", snap => {
+				this.setState({ poll: snap.val(), pollId: nextProps.selectedPoll });
+			});
+		}
+	}
+
+	setCount(count) {
+		this.setState({
+			count: count,
+		});
+	}
+
 	countVotes(choices) {
 		//console.log('THIS IS CHOICES ====>',choices);
 		let total = 0;
@@ -14,44 +49,25 @@ export class SelectedPoll extends React.Component {
 	}
 
 	render() {
-		const selectedPoll = this.props.allPolls[this.props.selectedPoll];
-		const totalVotes = this.countVotes(selectedPoll.choices);
-		const results = selectedPoll.choices.map((option, index) => {
-			let perc;
-			console.log(option.choice, option.vote);
-			if (option.vote == 0) {
-				perc = `0%`;
-			} else {
-				perc = `${Math.round(option.vote / totalVotes * 100)}%`;
-			}
-			return (
-				<li key={index} className="result">
-					{" "}
-					<div className="choice">{option.choice}</div>
-					<div className="bar-container">
-						<div className="bar" style={{ width: perc }} />
-						<span className="percentage">{perc}</span>
-					</div>{" "}
-					<div className="voteCount">{option.vote} votes</div>
-				</li>
-			);
-		});
+		const { poll, count } = this.state;
 		return (
 			<div className="section-container">
-				<h2 className="sectionTitle selectedPoll">{selectedPoll.title}</h2>
+				<h2 className="sectionTitle selectedPoll">{poll.title}</h2>
 				<div className="section selectedPoll">
 					<div className="selectedPoll-header">
-						<h3> {selectedPoll.text} </h3>
+						<h3> {poll.question} </h3>
 						<span className="pollInfo">
-							poll created: {moment(`${selectedPoll.date}`).format("LL")} |
-							total votes: {totalVotes}
+							poll created: {poll.createdDate} | total votes: {count}
 						</span>
 					</div>
 					<div className="bottomHalf">
-						<ul className="results">{results}</ul>
+						<Results
+							choices={poll.choices}
+							setCount={count => this.setCount(count)}
+						/>
 					</div>
 					<div className="link">
-						<Link to={`/poll/${selectedPoll.id}`}>Link to your poll</Link>
+						<Link to={`/poll${this.state.pollId}`}>Link to your poll</Link>
 					</div>
 				</div>
 			</div>
@@ -61,11 +77,9 @@ export class SelectedPoll extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		allPolls: state.allPolls,
+		db: state.db,
 		selectedPoll: state.selectedPoll,
 	};
 };
 
 export default connect(mapStateToProps)(SelectedPoll);
-
-// CUT FROM LINE 25 {selectedPoll.createdDate || 'TBD'}

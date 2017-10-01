@@ -6,9 +6,11 @@ export class CreateEdit extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			author: null,
-			title: "",
-			text: "",
+			info: {
+				author: null,
+				title: "",
+				question: "",
+			},
 			choices: [
 				{
 					choice: "",
@@ -29,13 +31,15 @@ export class CreateEdit extends React.Component {
 	componentWillMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			this.setState({
-				author: user.uid,
+				info: { ...this.state.info, author: user.uid },
 			});
 		});
 	}
 
-	handleOnChange(set) {
-		this.setState(set);
+	handleOnChange(e) {
+		this.setState({
+			info: { ...this.state.info, [e.target.id]: e.target.value },
+		});
 	}
 
 	handleChoiceChange(index, set) {
@@ -52,8 +56,18 @@ export class CreateEdit extends React.Component {
 
 	compileAndPost(e) {
 		e.preventDefault();
-		const ref = this.props.db.ref(`/polls/${this.state.author}`);
-		ref.push(this.state);
+		let ref = this.props.db.ref(`/polls/${this.state.info.author}`);
+		const newPoll = {
+			...this.state.info,
+			createdDate: new Date().toDateString(),
+		};
+		const pollKey = ref.push(newPoll).key;
+		ref = this.props.db.ref(
+			`/polls/${this.state.info.author}/${pollKey}/choices`,
+		);
+		this.state.choices.forEach(choice => {
+			ref.push(choice);
+		});
 		this.props.history.push("/");
 	}
 
@@ -72,10 +86,10 @@ export class CreateEdit extends React.Component {
 						id="title"
 						placeholder="Enter Poll Title Here..."
 						value={this.state.title}
-						onChange={e => this.handleOnChange({ title: e.target.value })}
+						onChange={e => this.handleOnChange(e)}
 					/>
 					<div className="section container create">
-						<label htmlFor="Question">
+						<label htmlFor="question">
 							<h3>Question</h3>
 						</label>
 						<input
@@ -83,7 +97,7 @@ export class CreateEdit extends React.Component {
 							id="question"
 							placeholder="Enter Question Here..."
 							value={this.state.text}
-							onChange={e => this.handleOnChange({ text: e.target.value })}
+							onChange={e => this.handleOnChange(e)}
 						/>
 						<label htmlFor="choice">
 							<h3>Answer choices</h3>

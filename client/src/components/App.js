@@ -46,7 +46,7 @@ class App extends React.Component {
 					</div>
 					<main>
 						<Route exact path="/" component={Dashboard} />
-						<Route exact path="/poll/:pollId" component={Poll} />
+						<Route exact path="/poll/:authorId/:pollId" component={Poll} />
 						<Route exact path="/create" component={CreateEdit} />
 						<Route exact path="/landing" component={Landing} />
 					</main>

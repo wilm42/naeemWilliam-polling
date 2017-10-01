@@ -1,50 +1,107 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../actions';
-import SelectedPoll from './dashboard/selectedPoll';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import * as actions from "../actions";
+
+import Results from "./dashboard/results";
 
 export class Poll extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			selected: null,
+			feedback: false,
+			poll: {
+				title: "",
+				choices: {},
+				text: "",
+			},
+		};
+	}
 
-  componentDidMount(){
-    this.props.dispatch(actions.navStateRecipient());
-    this.props.dispatch(actions.getPollRecipient(this.props.match.params.pollId));
-  }
+	componentWillMount(nextProps) {
+		const { params } = this.props.match;
+		const poll = this.props.db.ref(
+			`/polls/${params.authorId}/${params.pollId}`,
+		);
+		poll.on("value", snap => {
+			this.setState({
+				poll: snap.val(),
+			});
+		});
+	}
 
-  makeSelection(value){
-    console.log(value);
-    this.props.dispatch(actions.castVote());
-    this.props.dispatch(actions.recipientMakeSelection(this.props.poll.id, this.props.poll.choices, value));
-  };
-  
-  render(){
-    let value;
-    const choices = this.props.poll.choices.map((choice, index)=>{
-      return <div key={index} className="radio-div"> <input type="radio" name="pollChoice" value={index} id={`button-${index}`} onClick={e=> this.makeSelection(e.target.value)}/> <label htmlFor={`button-${index}`}><div className="radio-circle"></div>{choice.choice}</label></div>
-    });
-    let feedbackModal;
-    if(this.props.castVote){
-      feedbackModal = <div className="feedbackModal"><h2>Thanks for your input!</h2><span><Link to="/create">Create your own poll</Link></span></div>
-    }
-    return (
-      <div>
-        <h2 className="title"> {this.props.poll.title} </h2>
-        <div className="section poll">
-          <h3 className="question"> {this.props.poll.text} </h3>
-          <form>{choices}</form>
-        </div>
-        <div className={this.props.castVote ? 'feedbackModal show' : 'feedbackModal'}><h2 className="feedback">Thanks for your input!</h2><Link to="/create">Create your own poll</Link></div>
-      </div>
-    );
-  };
-};
+	makeSelection(value) {
+		this.setState({
+			selected: value,
+		});
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		const { params } = this.props.match;
+		const votes = this.props.db.ref(
+			`/polls/${params.authorId}/${params.pollId}/choices/${this.state
+				.selected}/votes`,
+		);
+		votes.push({
+			meta: {
+				date: new Date().toString(),
+			},
+		});
+		this.setState({
+			feedback: true,
+		});
+	}
+
+	render() {
+		const results = <Results choices={this.state.choices} />;
+		let value;
+		let choices = [];
+		for (let choice in this.state.poll.choices) {
+			choices.push(
+				<div key={choice} className="radio-div">
+					{" "}
+					<input
+						type="radio"
+						name="pollChoice"
+						value={choice}
+						id={`button-${choice}`}
+						onClick={e => this.makeSelection(e.target.value)}
+					/>{" "}
+					<label htmlFor={`button-${choice}`}>
+						<div className="radio-circle" />
+						{this.state.poll.choices[choice].choice}
+					</label>
+				</div>,
+			);
+		}
+		return (
+			<div>
+				<h2 className="title"> {this.state.poll.title} </h2>
+				<div className="section poll">
+					<h3 className="question"> {this.state.poll.question} </h3>
+					<form>
+						{choices}
+						<button type="submit" onClick={e => this.handleSubmit(e)}>
+							Cast Vote
+						</button>
+					</form>
+				</div>
+				<div
+					className={
+						this.state.feedback ? "feedbackModal show" : "feedbackModal"
+					}>
+					<h2 className="feedback">Thanks for your input!</h2>
+				</div>
+			</div>
+		);
+	}
+}
 
 const mapStateToProps = (state, props) => ({
-  poll: state.recipient,
-  hasSelected: state.recipientHasSelected,
-  selectedChoice: state.recipientChoice,
-  id: props.match.params.pollId,
-  castVote: state.castVote
+	db: state.db,
 });
 
 export default connect(mapStateToProps)(Poll);

@@ -42,6 +42,11 @@ export const reducer = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				user: true,
 			});
+		case actions.SELECT_POLL:
+			const selectedPoll = `/${action.userId}/${action.pollId}`;
+			return Object.assign({}, state, {
+				selectedPoll: selectedPoll,
+			});
 		case actions.REQUEST_GET_POLLS:
 			return Object.assign({}, state, {
 				loading: true,
@@ -57,10 +62,6 @@ export const reducer = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				loading: false,
 				error: action.error,
-			});
-		case actions.SELECT_POLL:
-			return Object.assign({}, state, {
-				selectedPoll: action.selected,
 			});
 		case actions.CAST_VOTE:
 			return Object.assign({}, state, {

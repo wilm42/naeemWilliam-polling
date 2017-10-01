@@ -89,9 +89,10 @@ export const getPolls = () => dispatch => {
 };
 
 export const SELECT_POLL = "SELECT_POLL";
-export const selectPoll = selected => ({
+export const selectPoll = (pollId, userId) => ({
 	type: SELECT_POLL,
-	selected,
+	pollId,
+	userId,
 });
 
 export const REQUEST_CREATE_POLL = "REQUEST_CREATE_POLL";
