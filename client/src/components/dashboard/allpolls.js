@@ -20,7 +20,9 @@ export class AllPolls extends React.Component {
 				polls.on("value", snap => {
 					let set = { polls: snap.val() };
 					set.firstPoll = Object.keys(snap.val())[0];
-					set.selected = set.firstPoll;
+					if (!this.state.selected) {
+						set.selected = set.firstPoll;
+					}
 					set.firebase = true;
 					this.setState(set);
 				});
@@ -34,10 +36,6 @@ export class AllPolls extends React.Component {
 				actions.selectPoll(this.state.selected, this.user.uid),
 			);
 		}
-	}
-
-	componentWillUnmount() {
-		console.log("will unmount");
 	}
 
 	selectPoll(pollId) {

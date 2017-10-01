@@ -32,8 +32,6 @@ export class SelectedPoll extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// if (this.props.selectedPoll !== nextProps.selectedPoll) {
-		console.log("selected poll is receiving props");
 		const poll = nextProps.db.ref(`/polls/${nextProps.selectedPoll}`);
 		poll.on("value", snap => {
 			if (snap) {
@@ -43,7 +41,6 @@ export class SelectedPoll extends React.Component {
 				});
 			}
 		});
-		// }
 	}
 
 	setCount(count) {

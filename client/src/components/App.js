@@ -48,8 +48,4 @@ class App extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	navState: state.navState,
-});
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

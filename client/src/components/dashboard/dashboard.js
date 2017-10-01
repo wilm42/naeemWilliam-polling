@@ -15,10 +15,6 @@ export class Dashboard extends React.Component {
 		this.props.auth.onAuthStateChanged(user => {
 			if (!user) {
 				this.props.history.push("/landing");
-			} else {
-				this.setState({
-					user: user,
-				});
 			}
 		});
 	}
@@ -27,7 +23,7 @@ export class Dashboard extends React.Component {
 		console.log(this.user);
 		return (
 			<div className="container dashboard">
-				<AllPolls user={this.state.user} />
+				<AllPolls />
 				<SelectedPoll />
 			</div>
 		);

@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import * as actions from "../actions";
 
-import Results from "./dashboard/results";
-
 export class Poll extends React.Component {
 	constructor() {
 		super();
@@ -56,7 +54,6 @@ export class Poll extends React.Component {
 	}
 
 	render() {
-		const results = <Results choices={this.state.choices} />;
 		let value;
 		let choices = [];
 		for (let choice in this.state.poll.choices) {
@@ -94,6 +91,10 @@ export class Poll extends React.Component {
 						this.state.feedback ? "feedbackModal show" : "feedbackModal"
 					}>
 					<h2 className="feedback">Thanks for your input!</h2>
+					<span>
+						You may close this page now, or{" "}
+						<Link to="/"> go to the home page</Link>
+					</span>
 				</div>
 			</div>
 		);
