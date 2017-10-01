@@ -4,7 +4,7 @@
 	"description": "A full-stack starter template",
 	"main": "index.js",
 	"scripts": {
-		"start": "cd server && node index.js",
+		"start": "node index.js",
 		"heroku-postbuild": "cd client && npm install --only=dev && npm run build",
 		"dev": "run-p dev:server dev:client start",
 		"dev:client":
