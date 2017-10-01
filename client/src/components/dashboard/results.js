@@ -26,12 +26,10 @@ export default class Results extends React.Component {
 		let results = [];
 		let total = 0;
 		for (let choice in choices) {
-			let result = {
-				choice: choices[choice].choice,
-				votes: 0,
-			};
+			let result = { choice: choices[choice].choice, votes: 0 };
+			// TODO: There is definitely a better way of counting these. Object.keys?
+			// eslint-disable-next-line
 			for (let vote in choices[choice].votes) {
-				// TODO: There is definitely a better way of counting these. Object.keys?
 				total++;
 				result.votes++;
 			}
