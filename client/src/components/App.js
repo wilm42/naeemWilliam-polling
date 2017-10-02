@@ -24,6 +24,8 @@ import CreateEdit from "./createEdit";
 import Header from "./header";
 import Landing from "./landing/landing";
 
+import "../styles/base.css";
+
 class App extends React.Component {
 	componentWillMount() {
 		this.props.dispatch(actions.initialize_firebase(firedb, fireauth));
@@ -32,10 +34,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router>
-				<div className="app">
-					<div className="header-container container">
-						<Header />
-					</div>
+				<div className="super grid">
+					<Header />
 					<main>
 						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/poll/:authorId/:pollId" component={Poll} />

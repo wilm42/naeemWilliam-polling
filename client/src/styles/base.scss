@@ -1,0 +1,36 @@
+* {
+	box-sizing: border-box;
+	font-family: "Varela Round", sans-serif;
+	font-size: 20px;
+}
+
+.container {
+	display: flex;
+}
+
+.grid {
+	display: grid;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.super {
+	height: 100vh;
+	width: 100vw;
+	grid-template-columns: 10% 80% 10%;
+	grid-template-rows: 10% 90%;
+}
+
+main {
+	grid-column-start: 2;
+	grid-column-end: span 1;
+	grid-row-start: 2;
+	grid-row-end: span 1;
+	padding-top: 40px;
+}

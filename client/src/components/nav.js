@@ -10,7 +10,7 @@ class Nav extends React.Component {
 	render() {
 		return (
 			<nav className="container">
-				<Link to="/create">+ create new poll </Link>
+				<Link to="/create">+ Create New Poll </Link>
 				<button type="signOut" id="signOut" onClick={() => this.signOut()}>
 					Sign Out
 				</button>

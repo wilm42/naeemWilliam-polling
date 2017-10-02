@@ -3,6 +3,8 @@ import Nav from "./nav";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import "../styles/header.css";
+
 class Header extends React.Component {
 	constructor() {
 		super();

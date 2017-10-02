@@ -1,4 +1,4 @@
-*{
+/* *{
   box-sizing: border-box;
   font-family: 'Ubuntu', sans-serif;
   font-size:20px;
@@ -10,405 +10,405 @@
 
 .column{
   flex-direction:column;
+} */
+
+.app {
+	height: 100vh;
 }
 
-.app{
-  height: 100vh;
+header {
+	font-family: "Ubuntu", sans-serif;
+	font-size: 20px;
+	justify-content: space-between;
+	align-content: center;
+	width: 95%;
+	max-width: 2500px;
+	margin: auto;
+	color: white;
 }
 
-header{
-  font-family: 'Ubuntu', sans-serif;
-  font-size:20px;
-  justify-content: space-between;
-  align-content: center;
-  width:95%;
-  max-width:2500px;
-  margin:auto;
-  color:white;
+.logo {
+	font-size: 48px;
+	display: flex;
+	align-content: center;
 }
 
-.logo{
-  font-size:48px;
-  display:flex;
-  align-content: center;
+.logoText {
+	margin-top: 3px;
 }
 
-.logoText{
-  margin-top:3px;
+.logo > img {
+	height: 51px;
+	width: 51px;
+	margin-right: 10px;
 }
 
-.logo > img{
-  height:51px;
-  width:51px;
-  margin-right:10px;
+header > nav > a {
+	text-decoration: none;
+	color: white;
+	margin: auto;
 }
 
-header > nav > a{
-  text-decoration: none;
-  color:white;
-  margin:auto;
+main {
+	width: 95%;
+	max-width: 2500px;
+	margin: auto;
 }
 
-main{
-  width:95%;
-  max-width:2500px;
-  margin:auto;
+.header-container {
+	background-color: #21a0a0;
+	height: 93px;
+	margin-bottom: 20px;
 }
 
-.header-container{
-  background-color:#21A0A0;
-  height: 93px;
-  margin-bottom: 20px;
+.sectionTitle {
+	font-size: 48px;
+	color: #046865;
+	margin-bottom: 10px;
 }
 
-.sectionTitle{
-  font-size:48px;
-  color: #046865;
-  margin-bottom:10px;
+.sectionTitle.allPolls {
+	text-align: center;
 }
 
-.sectionTitle.allPolls{
-  text-align: center;
+.section {
+	background-color: #21a0a0;
+	border-radius: 10px;
+	overflow: scroll;
+	height: 100%;
 }
 
-.section{
-  background-color: #21A0A0;
-  border-radius:10px;
-  overflow: scroll;
-  height:100%;
+.section.allPolls {
+	height: 500px;
+	min-width: 300px;
+	margin-right: 40px;
+	overflow-y: scroll;
+	overflow-x: visible;
 }
 
-.section.allPolls{
-  height:500px;
-  min-width:300px;
-  margin-right:40px;
-  overflow-y: scroll;
-  overflow-x: visible;
+.allPolls > ul > li > button {
+	border: none;
+	background-color: #21a0a0;
+	width: 100%;
+	font-size: 36px;
+	color: white;
+	text-align: left;
+	padding: 30px;
+	border-bottom: solid 3px #046865;
+	overflow: visible;
 }
 
-.allPolls > ul > li > button{
-  border:none;
-  background-color: #21A0A0;
-  width:100%;
-  font-size: 36px;
-  color:white;
-  text-align: left;
-  padding:30px;
-  border-bottom: solid 3px #046865;
-  overflow: visible;
+.allPolls > ul > li > button:active {
+	outline: none;
 }
 
-.allPolls > ul > li > button:active{
-  outline:none;
+.section.selectedPoll {
+	background-color: white;
+	height: 500px;
+	border: solid 4px #046865;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
 }
 
-.section.selectedPoll{
-  background-color:white;
-  height:500px;
-  border: solid 4px #046865;
-  width:100%;
-  position:relative;
-  overflow:hidden;
+.sectionTitle.selectedPoll {
+	text-align: center;
 }
 
-.sectionTitle.selectedPoll{
-  text-align:center;
+.dashboard {
+	justify-content: space-between;
+	margin: auto;
 }
 
-.dashboard{
-  justify-content: space-between;
-  margin:auto;
+.section-container {
+	width: 100%;
 }
 
-.section-container{
-  width:100%;
-}
-
-.selectedPoll-header{
-  background-color:#21A0A0;
-  position:relative;
-  /*top:0;
+.selectedPoll-header {
+	background-color: #21a0a0;
+	position: relative;
+	/*top:0;
   left:0;
   right:0;*/
-  padding:30px;
-  font-size:48px;
-  color:white;
-  padding-bottom:55px;
+	padding: 30px;
+	font-size: 48px;
+	color: white;
+	padding-bottom: 55px;
 }
 
-.pollInfo{
-  font-size: 24px;
-  background-color:#046865;
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:10px;
-  text-align: right;
+.pollInfo {
+	font-size: 24px;
+	background-color: #046865;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px;
+	text-align: right;
 }
 
-.selected > button{
-  background-color:#046865 !important;
-  z-index: 9998;
+.selected > button {
+	background-color: #046865 !important;
+	z-index: 9998;
 }
 
-.selectorTriangle{
-  width: 0; 
-  height: 0; 
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 15px solid #046865;
+.selectorTriangle {
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 15px solid #046865;
 }
 
-.selector{
-  display:flex;
-  position:absolute;
-  right:0;
-  margin-right:35px;
+.selector {
+	display: flex;
+	position: absolute;
+	right: 0;
+	margin-right: 35px;
 }
 
-.selectorTitle{
-  font-size:25px;
-  background-color:#046865;
-  padding-right:5px;
-  padding-left:5px;
+.selectorTitle {
+	font-size: 25px;
+	background-color: #046865;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
-.allPolls-container{
-  position:relative;
+.allPolls-container {
+	position: relative;
 }
 
-.results{
-  padding-right:30px;
-  padding-left:30px;
-  padding-top:20px;
-  height:100%;
+.results {
+	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 20px;
+	height: 100%;
 }
 
-.link{
-  display:block;
-  width:100%;
-  position:absolute;
-  bottom:0;
-  background-color:#046865;
-  color:white;
-  text-align:right;
-  padding:10px;
+.link {
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: #046865;
+	color: white;
+	text-align: right;
+	padding: 10px;
 }
 
-.result{
-  display:flex;
-  flex-direction: column;
-  margin-bottom:20px;
+.result {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
 }
 
-.bottomHalf{
-  height:359px;
-  position:relative;
-  overflow:scroll;
+.bottomHalf {
+	height: 359px;
+	position: relative;
+	overflow: scroll;
 }
 
-.choice{
-  font-size:48px;
-  color:#046865;
-  margin-bottom:5px;
+.choice {
+	font-size: 48px;
+	color: #046865;
+	margin-bottom: 5px;
 }
 
-.bar-container{
-  position:relative;
-  width:100%;
-  height:60px;
-  border: solid 4px #046865;
-  border-radius: 5px;
-  display:flex;
-  justify-content: space-between;
-  align-items: center;
+.bar-container {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	border: solid 4px #046865;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.bar{
-  height:100%;
-  width:0%;
-  background-color:#21A0A0;
-  transition:width .5s ease-out;
+.bar {
+	height: 100%;
+	width: 0%;
+	background-color: #21a0a0;
+	transition: width 0.5s ease-out;
 }
 
-.percentage{
-  position:absolute;
-  right:0;
-  font-size:48px;
-  color:#046865;
+.percentage {
+	position: absolute;
+	right: 0;
+	font-size: 48px;
+	color: #046865;
 }
 
-.voteCount{
-  text-align: center;
-  margin-top:5px;
-  color:#046865;
+.voteCount {
+	text-align: center;
+	margin-top: 5px;
+	color: #046865;
 }
 
-.section.create{
-  background-color:white;
-  height:490px;
-  border: solid 4px #046865;
-  width:100%;
-  position:relative;
-  flex-direction:column;
+.section.create {
+	background-color: white;
+	height: 490px;
+	border: solid 4px #046865;
+	width: 100%;
+	position: relative;
+	flex-direction: column;
 }
 
-label{
-  display:none;
+label {
+	display: none;
 }
 
-input{
-  background:transparent;
-  border:none;
+input {
+	background: transparent;
+	border: none;
 }
 
-#createEdit{
-  display:flex;
-  flex-direction:column;
+#createEdit {
+	display: flex;
+	flex-direction: column;
 }
 
-#title, .title{
-  text-align:center;
-  color:#046865;
-  font-size:48px;
-  margin:auto;
-  margin-bottom:10px;
+#title,
+.title {
+	text-align: center;
+	color: #046865;
+	font-size: 48px;
+	margin: auto;
+	margin-bottom: 10px;
 }
 
-#question, .question{
-  width:100%;
-  background-color:#21A0A0;
-  padding:40px;
-  color:white;
-  font-size:36px;
+#question,
+.question {
+	width: 100%;
+	background-color: #21a0a0;
+	padding: 40px;
+	color: white;
+	font-size: 36px;
 }
 
-#question::placeholder{
-  color:white;
+#question::placeholder {
+	color: white;
 }
 
-.choices{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  padding:40px;
+.choices {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 40px;
 }
 
-.choiceInput{
-  margin-bottom:40px;
+.choiceInput {
+	margin-bottom: 40px;
 }
 
-.choiceInput > input{
-  width:100%;
+.choiceInput > input {
+	width: 100%;
 }
 
-.create > button{
-  border:none;
-  background-color:#21A0A0;
-  position:absolute;
-  bottom:0;
-  padding:20px;
-  width:100%;
-  color:white;
-  transition: background-color .2s ease-in-out;
+.create > button {
+	border: none;
+	background-color: #21a0a0;
+	position: absolute;
+	bottom: 0;
+	padding: 20px;
+	width: 100%;
+	color: white;
+	transition: background-color 0.2s ease-in-out;
 }
 
-.create > button:hover{
-  background-color:#046865;
-  transition: background-color .2s ease-in-out;
+.create > button:hover {
+	background-color: #046865;
+	transition: background-color 0.2s ease-in-out;
 }
 
-.section.poll{
-  background-color:white;
-  height:490px;
-  border: solid 4px #046865;
-  width:100%;
-  position:relative;
-  flex-direction:column;
+.section.poll {
+	background-color: white;
+	height: 490px;
+	border: solid 4px #046865;
+	width: 100%;
+	position: relative;
+	flex-direction: column;
 }
 
-.section.poll > form{
-  padding:40px;
-  font-size:48px;
-  color: #046865;
+.section.poll > form {
+	padding: 40px;
+	font-size: 48px;
+	color: #046865;
 }
 
-.section.poll > form > div > label{
-  display:flex;
-  align-items: center;
+.section.poll > form > div > label {
+	display: flex;
+	align-items: center;
 }
 
-input[type="radio"]{
-  display:none;
+input[type="radio"] {
+	display: none;
 }
 
-input[type="radio"]:checked ~ label{
-  color: #E53D00;
-  transition: color .3s ease-in;
+input[type="radio"]:checked ~ label {
+	color: #e53d00;
+	transition: color 0.3s ease-in;
 }
 
-input[type="radio"]:checked ~ label > .radio-circle{
-  background-color:#E53D00;
-  border:solid 3px #BC3200;
-  transition: border background-color .3s ease-in;
+input[type="radio"]:checked ~ label > .radio-circle {
+	background-color: #e53d00;
+	border: solid 3px #bc3200;
+	transition: border background-color 0.3s ease-in;
 }
 
-.radio-circle{
-  border-radius: 100%;
-  background-color:#21A0A0;
-  border: solid 3px #046865;
-  width:25px;
-  height:25px;
-  margin-right:10px;
-  transition: border background-color .3s ease-in;
+.radio-circle {
+	border-radius: 100%;
+	background-color: #21a0a0;
+	border: solid 3px #046865;
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	transition: border background-color 0.3s ease-in;
 }
 
-.section.poll > form > div > label:hover > .radio-circle{
-  background-color:#E53D00;
-  transition: background-color .3s ease-in;
+.section.poll > form > div > label:hover > .radio-circle {
+	background-color: #e53d00;
+	transition: background-color 0.3s ease-in;
 }
 
-
-
-.feedbackModal{
-  visibility: hidden;
-  opacity:0;
-  display:flex;
-  flex-direction:column;
-  text-align:center;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(0,0,0,0.8);
-  transition:.3s ease-in;
-  padding:80px;
-  border-radius:20px;
-  justify-content: center;
-  align-content: center;
-  color:white;
+.feedbackModal {
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+	transition: 0.3s ease-in;
+	padding: 80px;
+	border-radius: 20px;
+	justify-content: center;
+	align-content: center;
+	color: white;
 }
 
-.feedbackModal.show{
-  visibility:visible;
-  opacity:1;
+.feedbackModal.show {
+	visibility: visible;
+	opacity: 1;
 }
 
-h2.feedback{
-  width:100%;
-  font-size:60px;
-  margin-bottom:20px;
+h2.feedback {
+	width: 100%;
+	font-size: 60px;
+	margin-bottom: 20px;
 }
 
-.feedbackModal > a{
-  text-decoration: none;
-  font-size:28px;
-  color:white;
-  transition: text-decoration .2s ease-in;
+.feedbackModal > a {
+	text-decoration: none;
+	font-size: 28px;
+	color: white;
+	transition: text-decoration 0.2s ease-in;
 }
 
-.feedbackModal > a:hover{
-  text-decoration:underline;
+.feedbackModal > a:hover {
+	text-decoration: underline;
 }

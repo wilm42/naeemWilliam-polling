@@ -3,6 +3,8 @@ import AllPolls from "./allpolls";
 import SelectedPoll from "./selectedPoll";
 import { connect } from "react-redux";
 
+import '../../styles/dashboard.css';
+
 export class Dashboard extends React.Component {
 	constructor() {
 		super();
