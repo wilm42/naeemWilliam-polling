@@ -1,45 +1,45 @@
 {
-	"name": "thinkful-full-stack-template-v2",
-	"version": "0.1.0",
-	"description": "A full-stack starter template",
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js",
-		"heroku-postbuild": "cd client && npm install --only=dev && npm run build",
-		"dev": "run-p dev:server dev:client start",
-		"dev:client":
-			"cd client && cross-env BROWSER=none npm start -- --color=always | xp http://localhost:3000/ http://localhost:8080/",
-		"dev:server": "cd server && npm start",
-		"install": "run-s install:server install:client",
-		"install:server": "cd server && npm install",
-		"install:client": "cd client && npm install"
-	},
-	"cacheDirectories": [
-		"node_modules",
-		"server/node_modules",
-		"client/node_modules"
-	],
-	"author": "Joe Turner <jturner@thinkful.com>",
-	"license": "MIT",
-	"dependencies": {
-		"body-parser": "^1.17.2",
-		"chai-moment": "^0.1.0",
-		"cors": "^2.8.3",
-		"cross-env": "^3.1.4",
-		"express": "^4.14.1",
-		"firebase": "^4.4.0",
-		"http-proxy-middleware": "^0.17.3",
-		"npm-run-all": "^4.0.1",
-		"xp": "^1.0.1"
-	},
-	"devDependencies": {
-		"browser-sync": "^2.18.13",
-		"gulp": "^3.9.1",
-		"gulp-concat": "^2.6.1",
-		"gulp-plumber": "^1.1.0",
-		"gulp-strip-debug": "^1.1.0",
-		"gulp-uglify": "^3.0.0",
-		"gulp-util": "^3.0.8",
-		"node-notifier": "^5.1.2"
-	}
+  "name": "thinkful-full-stack-template-v2",
+  "version": "0.1.0",
+  "description": "A full-stack starter template",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm run build",
+    "dev": "run-p dev:server dev:client start",
+    "dev:client": "cd client && cross-env BROWSER=none npm start -- --color=always | xp http://localhost:3000/ http://localhost:8080/",
+    "dev:server": "cd server && npm start",
+    "install": "run-s install:server install:client",
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "server/node_modules",
+    "client/node_modules"
+  ],
+  "author": "Joe Turner <jturner@thinkful.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chai-moment": "^0.1.0",
+    "cors": "^2.8.3",
+    "cross-env": "^3.1.4",
+    "express": "^4.14.1",
+    "firebase": "^4.4.0",
+    "http-proxy-middleware": "^0.17.3",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.1",
+    "xp": "^1.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "node-notifier": "^5.1.2"
+  }
 }
