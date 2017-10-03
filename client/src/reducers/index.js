@@ -4,6 +4,7 @@ const initialState = {
 	db: null,
 	auth: null,
 	user: false,
+	dashToggle: false, // False means show 'my polls', true means show 'selectedPoll' on dash in mobile layout
 	allPolls: [
 		{
 			id: null,
@@ -46,6 +47,10 @@ export const reducer = (state = initialState, action) => {
 			const selectedPoll = `/${action.userId}/${action.pollId}`;
 			return Object.assign({}, state, {
 				selectedPoll: selectedPoll,
+			});
+		case actions.TOGGLE_DASH_VIEW:
+			return Object.assign({}, state, {
+				dashToggle: !state.dashToggle,
 			});
 		default:
 			return state;

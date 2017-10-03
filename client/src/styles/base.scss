@@ -34,3 +34,21 @@ main {
 	grid-row-end: span 1;
 	padding-top: 40px;
 }
+
+.mobileComingSoon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: white;
+	padding: 20%;
+	background-color: rgba(0, 0, 0, 0.99);
+	font-size: 50px;
+	z-index: -9999999;
+	transition: 0.2s ease-in;
+	opacity: 0;
+}
+
+@media only screen and (max-width: 1430px) and (-webkit-min-device-pixel-ratio: 1) {
+}

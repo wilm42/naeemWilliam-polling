@@ -1,3 +1,21 @@
-a{
-  color: white;
+.dashboard {
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: 100%;
+	grid-column-gap: 20px;
+}
+
+h2 {
+	font-size: 40px;
+	color: #046865;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1115px) and (-webkit-min-device-pixel-ratio: 1) {
+	.hide {
+		display: none;
+	}
+	.dashboard {
+		grid-template-columns: 100%;
+	}
 }

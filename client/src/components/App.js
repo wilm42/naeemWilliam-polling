@@ -35,7 +35,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div className="super grid">
-					<Header />
+					<Header history={history} />
 					<main>
 						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/poll/:authorId/:pollId" component={Poll} />

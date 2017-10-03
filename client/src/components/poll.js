@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import "../styles/poll.css";
+
 export class Poll extends React.Component {
 	constructor() {
 		super();
@@ -74,7 +76,7 @@ export class Poll extends React.Component {
 		return (
 			<div>
 				<h2 className="title"> {this.state.poll.title} </h2>
-				<div className="section poll">
+				<div className="section poll grid">
 					<h3 className="question"> {this.state.poll.question} </h3>
 					<form>
 						{choices}

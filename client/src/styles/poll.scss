@@ -1,0 +1,136 @@
+.section.poll {
+	background-color: white;
+	height: 75vh;
+	border: solid 4px #046865;
+	position: relative;
+	flex-direction: column;
+	border-radius: 0.5em;
+	max-width: 800px;
+	overflow: hidden;
+	margin: auto;
+	grid-template-rows: 1fr 2.5fr 0.5fr;
+}
+
+h3.question {
+	display: flex;
+	margin-top: -5px;
+	background-color: #21a0a0;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	font-size: 40px;
+	text-align: center;
+}
+
+.section.poll > form {
+	padding-top: 20px;
+	font-size: 48px;
+	color: #046865;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	grid-row-end: span 1;
+}
+
+.section.poll > form > div > label {
+	margin-left: 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]:checked ~ label {
+	color: #e53d00;
+	transition: color 0.3s ease-in;
+}
+
+input[type="radio"]:checked ~ label > .radio-circle {
+	background-color: #e53d00;
+	border: solid 3px #bc3200;
+	transition: border background-color 0.3s ease-in;
+}
+
+.radio-circle {
+	border-radius: 100%;
+	background-color: #21a0a0;
+	border: solid 3px #046865;
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	transition: border background-color 0.3s ease-in;
+}
+
+.section.poll > form > div > label:hover > .radio-circle {
+	background-color: #e53d00;
+	transition: background-color 0.3s ease-in;
+}
+
+.feedbackModal {
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.9);
+	transition: 0.3s ease-in;
+	padding: 80px;
+	border-radius: 20px;
+	justify-content: center;
+	align-content: center;
+	color: white;
+}
+
+.feedbackModal.show {
+	visibility: visible;
+	opacity: 1;
+}
+
+h2.feedback {
+	color: white;
+	width: 100%;
+	font-size: 8.5vw;
+	margin-bottom: 20px;
+}
+
+.feedbackModal > a {
+	text-decoration: none;
+	font-size: 28px;
+	color: #21a0a0 !important;
+	transition: text-decoration 0.2s ease-in;
+	text-decoration: underline;
+}
+
+.section.poll > form > button[type="submit"] {
+	border: none;
+	background-color: #21a0a0;
+	position: absolute;
+	bottom: 0;
+	padding: 20px;
+	width: 100%;
+	color: white;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.section.poll > form > button[type="submit"]:hover {
+	background-color: #046865;
+	transition: background-color 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 1115px) and (-webkit-min-device-pixel-ratio: 1) {
+	section.poll {
+		width: initial !important;
+	}
+}

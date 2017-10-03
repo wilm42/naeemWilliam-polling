@@ -3,15 +3,9 @@ import AllPolls from "./allpolls";
 import SelectedPoll from "./selectedPoll";
 import { connect } from "react-redux";
 
-import '../../styles/dashboard.css';
+import "../../styles/dashboard.css";
 
 export class Dashboard extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			user: null,
-		};
-	}
 	componentWillMount() {
 		this.props.auth.onAuthStateChanged(user => {
 			if (!user) {
@@ -22,9 +16,9 @@ export class Dashboard extends React.Component {
 
 	render() {
 		return (
-			<div className="container dashboard">
-				<AllPolls />
-				<SelectedPoll />
+			<div className="dashboard grid">
+				<AllPolls selectedPoll={this.props.selectedPoll} />
+				<SelectedPoll selectedPoll={this.props.selectedPoll} />
 			</div>
 		);
 	}

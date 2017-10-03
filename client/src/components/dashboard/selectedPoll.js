@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import Results from "./results";
 
+import "../../styles/selectedPoll.css";
+
 export class SelectedPoll extends React.Component {
 	constructor(props) {
 		super(props);
@@ -60,22 +62,30 @@ export class SelectedPoll extends React.Component {
 	render() {
 		const { poll, count } = this.state;
 		return (
-			<div className="section-container">
+			<div
+				className={
+					this.props.dashToggle ? (
+						"selectedPoll parent"
+					) : (
+						"hide selectedPoll parent"
+					)
+				}>
 				<h2 className="sectionTitle selectedPoll">{poll.title}</h2>
-				<div className="section selectedPoll">
-					<div className="selectedPoll-header">
+
+				<div className="section selectedPoll grid">
+					<div className="selectedPoll-header grid">
 						<h3> {poll.question} </h3>
-						<span className="pollInfo">
+						<span className="pollInfo container">
 							poll created: {poll.createdDate} | total votes: {count}
 						</span>
 					</div>
-					<div className="bottomHalf">
-						<Results
-							choices={poll.choices}
-							setCount={count => this.setCount(count)}
-						/>
-					</div>
-					<div className="link">
+
+					<Results
+						choices={poll.choices}
+						setCount={count => this.setCount(count)}
+					/>
+
+					<div className="link container">
 						<Link to={`/poll${this.state.pollId}`}>Link to your poll</Link>
 					</div>
 				</div>
@@ -88,6 +98,7 @@ const mapStateToProps = state => {
 	return {
 		db: state.db,
 		selectedPoll: state.selectedPoll,
+		dashToggle: state.dashToggle,
 	};
 };
 

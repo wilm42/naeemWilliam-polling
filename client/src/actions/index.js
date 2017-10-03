@@ -17,3 +17,8 @@ export const user_validated = user => ({
 	type: USER_VALIDATED,
 	user,
 });
+
+export const TOGGLE_DASH_VIEW = "TOGGLE_DASH_VIEW";
+export const toggle_dash_view = () => ({
+	type: TOGGLE_DASH_VIEW,
+});

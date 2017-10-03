@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import Buttons from "./buttons";
+
 import * as actions from "../../actions/";
+
+import "../../styles/landing.css";
 
 class Landing extends React.Component {
 	constructor() {
@@ -9,6 +13,7 @@ class Landing extends React.Component {
 		this.state = {
 			email: "",
 			password: "",
+			logIn: true,
 		};
 	}
 
@@ -48,35 +53,37 @@ class Landing extends React.Component {
 	render() {
 		return (
 			<div className="landing">
-				<h1>Hi, Welcome to Pollster!</h1>
-				<h2>Log in or Sign up to start creating polls</h2>
-				<form>
-					<div>
-						<label htmlFor="email">email</label>
-						<input
-							id="email"
-							type="email"
-							onChange={e => this.handleInput(e)}
-							value={this.state.email}
-						/>
-					</div>
-					<div>
-						<label htmlFor="password">password</label>
-						<input
-							id="password"
-							type="password"
-							onChange={e => this.handleInput(e)}
-							value={this.state.password}
-						/>
-					</div>
-				</form>
-				<div>
-					<button type="submit" onClick={e => this.logIn(e)}>
-						Log In
-					</button>
-					<button type="submit" onClick={e => this.signUp(e)}>
-						Sign Up
-					</button>
+				<div className="form-container">
+					<header>
+						<h2>Create awesome polls.</h2>
+						<h2>Watch the results in real time.</h2>
+					</header>
+					<form>
+						<div>
+							<label htmlFor="email">email</label>
+							<input
+								id="email"
+								type="email"
+								onChange={e => this.handleInput(e)}
+								value={this.state.email}
+								placeholder="you@gmail.com"
+							/>
+						</div>
+						<div>
+							<label htmlFor="password">password</label>
+							<input
+								id="password"
+								type="password"
+								onChange={e => this.handleInput(e)}
+								value={this.state.password}
+								placeholder="your password"
+							/>
+						</div>
+						<div className="demoUser">
+							Demo user: demo@email.com / password123
+						</div>
+					</form>
+					<Buttons logIn={e => this.logIn(e)} signUp={e => this.signUp(e)} />
 				</div>
 			</div>
 		);

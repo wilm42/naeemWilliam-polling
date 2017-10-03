@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
+import "../../styles/allpolls.css";
+
 export class AllPolls extends React.Component {
 	constructor() {
 		super();
@@ -41,6 +43,7 @@ export class AllPolls extends React.Component {
 		if (this.user) {
 			this.setState({ selected: pollId });
 		}
+		this.props.dispatch(actions.toggle_dash_view());
 	}
 
 	render() {
@@ -64,11 +67,9 @@ export class AllPolls extends React.Component {
 			);
 		}
 		return (
-			<div className="allPolls-container">
-				<h2 className="sectionTitle allPolls"> All Polls </h2>
-				<div className="section allPolls">
-					<ul>{polls}</ul>
-				</div>
+			<div className={this.props.dashToggle ? "hide allPolls" : "allPolls"}>
+				<h2 className="allPolls"> My Polls </h2>
+				<ul className="allPolls">{polls}</ul>
 			</div>
 		);
 	}
@@ -79,6 +80,7 @@ const mapStateToProps = state => {
 		db: state.db,
 		auth: state.auth,
 		selectedPoll: state.selectedPoll,
+		dashToggle: state.dashToggle,
 	};
 };
 

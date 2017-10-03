@@ -1,0 +1,66 @@
+div.allPolls {
+	grid-column-start: 1;
+	grid-column-end: span 1;
+	justify-content: center;
+}
+
+ul.allPolls {
+	height: fit-content;
+	max-height: 75vh;
+	width: 100%;
+	max-width: 350px;
+	border: solid 2px #046865;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border-radius: 0.5em;
+	background-color: #046865;
+	margin: auto;
+	&::-webkit-scrollbar {
+		width: 0.5em;
+		margin: 2px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: rgba(33, 160, 160, 0.5);
+		border-radius: 0.5em;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #046865;
+		border-radius: 0.5em;
+	}
+	li {
+		border-bottom: solid 2px #046865;
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+	.selected > button {
+		background-color: #046865 !important;
+		z-index: 9998;
+		transform: scale(1) !important;
+		border: none !important;
+	}
+	button {
+		background-color: #21a0a0;
+		border: none;
+		width: 100%;
+		font-size: 36px;
+		color: white;
+		text-align: left;
+		padding: 30px;
+		transition: 0.2s ease-in;
+		&:hover {
+			cursor: pointer;
+			transition: 0.2s ease-in;
+			transform: scale(1.05);
+			border: solid 2px #046865;
+		}
+	}
+}
+
+@media only screen and (max-width: 1115px) and (-webkit-min-device-pixel-ratio: 1) {
+	ul.allPolls {
+		max-width: initial;
+	}
+}

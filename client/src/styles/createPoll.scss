@@ -1,0 +1,125 @@
+.section.create {
+	background-color: white;
+	height: 75vh;
+	border: solid 4px #046865;
+	width: 100%;
+	position: relative;
+	flex-direction: column;
+	border-radius: 0.5em;
+	overflow: hidden;
+}
+
+input {
+	background: transparent;
+	border: none;
+}
+
+label[for="createEdit"] {
+	display: none;
+}
+
+#createEdit {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	display: flex;
+	flex-direction: column;
+	color: #046865;
+}
+
+.title-input {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+label[for="title"] {
+	width: 450px;
+	h3 {
+		text-align: center;
+	}
+}
+
+#title,
+.title {
+	text-align: center;
+	color: #046865;
+	font-size: 48px;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+#title::placeholder {
+	color: #046865;
+	opacity: 0.5;
+}
+
+label[for="question"] {
+	background-color: #21a0a0;
+	padding: 40px;
+}
+
+#question,
+.question {
+	margin-top: 5px;
+	color: white;
+	font-size: 36px;
+}
+
+#question::placeholder {
+	color: white;
+	opacity: 0.5;
+}
+
+.choices {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 40px;
+}
+
+.choiceInput {
+	margin-bottom: 40px;
+}
+
+.choiceInput > input {
+	margin-top: 5px;
+	width: 100%;
+}
+
+.choiceInput > input::placeholder {
+	opacity: 0.5;
+}
+
+.create > button {
+	border: none;
+	background-color: #21a0a0;
+	position: absolute;
+	bottom: 0;
+	padding: 20px;
+	width: 100%;
+	color: white;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.create > button:hover {
+	background-color: #046865;
+	transition: background-color 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 1115px) and (-webkit-min-device-pixel-ratio: 1) {
+	label[for="question"] {
+		padding: 20px;
+	}
+	.choices {
+		padding-top: 5%;
+		padding-bottom: 50%;
+	}
+	#question,
+	.question {
+		font-size: 20px;
+	}
+}
