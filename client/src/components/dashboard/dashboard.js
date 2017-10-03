@@ -17,7 +17,10 @@ export class Dashboard extends React.Component {
 	render() {
 		return (
 			<div className="dashboard grid">
-				<AllPolls selectedPoll={this.props.selectedPoll} />
+				<AllPolls
+					selectedPoll={this.props.selectedPoll}
+					history={this.props.history}
+				/>
 				<SelectedPoll selectedPoll={this.props.selectedPoll} />
 			</div>
 		);

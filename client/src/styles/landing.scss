@@ -12,6 +12,24 @@
 		padding: 20px;
 		background-color: #046865;
 	}
+	.error {
+		display: flex;
+		overflow: hidden;
+		background-color: #c90000;
+		color: white;
+		width: 100%;
+		text-align: center;
+		align-content: center;
+		align-items: center;
+		justify-content: center;
+		height: 50px;
+		transition: 0.2s ease-in;
+		&.hide {
+			height: 0px;
+			overflow: hidden;
+			transition: 0.2s ease-in;
+		}
+	}
 	.form-container {
 		border-radius: 0.5em;
 		overflow: hidden;

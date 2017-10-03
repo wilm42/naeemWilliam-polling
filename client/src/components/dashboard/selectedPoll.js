@@ -12,9 +12,19 @@ export class SelectedPoll extends React.Component {
 		this.state = {
 			count: 0,
 			poll: {
-				title: "null",
-				question: "null",
-				choices: {},
+				title: "New User",
+				question: "Nothing to see here",
+				createdDate: "Tue Oct 3, 2017",
+				choices: {
+					newuser: {
+						choice: "What are you waiting for? Make your first poll!",
+						votes: {
+							placeHolder: {
+								placeHolder: true,
+							},
+						},
+					},
+				},
 			},
 		};
 	}
@@ -64,11 +74,9 @@ export class SelectedPoll extends React.Component {
 		return (
 			<div
 				className={
-					this.props.dashToggle ? (
-						"selectedPoll parent"
-					) : (
-						"hide selectedPoll parent"
-					)
+					this.props.dashToggle
+						? "selectedPoll parent"
+						: "hide selectedPoll parent"
 				}>
 				<h2 className="sectionTitle selectedPoll">{poll.title}</h2>
 

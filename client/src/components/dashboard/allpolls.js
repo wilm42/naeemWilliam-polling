@@ -9,7 +9,11 @@ export class AllPolls extends React.Component {
 		super();
 		this.state = {
 			firebase: false,
-			polls: ["no polls yet, create your first one!"],
+			polls: {
+				newUser: {
+					title: "Create a poll",
+				},
+			},
 		};
 	}
 
@@ -19,13 +23,15 @@ export class AllPolls extends React.Component {
 				this.user = user;
 				const polls = this.props.db.ref(`/polls/${user.uid}`);
 				polls.on("value", snap => {
-					let set = { polls: snap.val() };
-					set.firstPoll = Object.keys(snap.val())[0];
-					if (!this.state.selected) {
-						set.selected = set.firstPoll;
+					if (snap.val()) {
+						let set = { polls: snap.val() };
+						set.firstPoll = Object.keys(snap.val())[0];
+						if (!this.state.selected) {
+							set.selected = set.firstPoll;
+						}
+						set.firebase = true;
+						this.setState(set);
 					}
-					set.firebase = true;
-					this.setState(set);
 				});
 			}
 		});
@@ -40,6 +46,9 @@ export class AllPolls extends React.Component {
 	}
 
 	selectPoll(pollId) {
+		if (pollId === "newUser") {
+			this.props.history.push("/create");
+		}
 		if (this.user) {
 			this.setState({ selected: pollId });
 		}

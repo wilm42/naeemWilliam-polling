@@ -5,6 +5,7 @@
 	position: relative;
 	flex-direction: column;
 	border-radius: 0.5em;
+	width: 60%;
 	max-width: 800px;
 	overflow: hidden;
 	margin: auto;
@@ -130,7 +131,7 @@ h2.feedback {
 }
 
 @media only screen and (max-width: 1115px) and (-webkit-min-device-pixel-ratio: 1) {
-	section.poll {
-		width: initial !important;
+	.section.poll {
+		width: 100%;
 	}
 }

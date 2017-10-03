@@ -14,6 +14,7 @@ class Landing extends React.Component {
 			email: "",
 			password: "",
 			logIn: true,
+			error: false,
 		};
 	}
 
@@ -36,18 +37,24 @@ class Landing extends React.Component {
 
 	logIn(e) {
 		e.preventDefault();
-		this.props.auth.signInWithEmailAndPassword(
-			this.state.email,
-			this.state.password,
-		);
+		this.props.auth
+			.signInWithEmailAndPassword(this.state.email, this.state.password)
+			.catch(e => {
+				this.setState({
+					error: true,
+				});
+			});
 	}
 
 	signUp(e) {
 		e.preventDefault();
-		this.props.auth.createUserWithEmailAndPassword(
-			this.state.email,
-			this.state.password,
-		);
+		this.props.auth
+			.createUserWithEmailAndPassword(this.state.email, this.state.password)
+			.catch(e => {
+				this.setState({
+					error: true,
+				});
+			});
 	}
 
 	render() {
@@ -58,6 +65,10 @@ class Landing extends React.Component {
 						<h2>Create awesome polls.</h2>
 						<h2>Watch the results in real time.</h2>
 					</header>
+					<div className={this.state.error ? "error" : "error hide"}>
+						{" "}
+						Oops! Something went wrong, wanna try that again?{" "}
+					</div>
 					<form>
 						<div>
 							<label htmlFor="email">email</label>
